@@ -47,18 +47,22 @@ export default function PrimaryHeader(): JSX.Element {
     setOpen(false);
   }, [location.pathname]);
 
-  // Disable body scroll and focus the first link when the menu is open
   useEffect(() => {
-    const { body } = document;
-    if (open) {
-      const prev = body.style.overflow;
-      body.style.overflow = "hidden";
-      setTimeout(() => firstLinkRef.current?.focus(), 0);
-      return () => {
-        body.style.overflow = prev;
-      };
-    }
-  }, [open]);
+  const { body } = document;
+  if (open) {
+    
+    const scrollbarComp = window.innerWidth - document.documentElement.clientWidth;
+    body.style.setProperty("--scrollbar-comp", `${Math.max(0, scrollbarComp)}px`);
+    body.classList.add("body-no-scroll");
+
+    setTimeout(() => firstLinkRef.current?.focus(), 0);
+
+    return () => {
+      body.classList.remove("body-no-scroll");
+      body.style.removeProperty("--scrollbar-comp");
+    };
+  }
+}, [open]);
 
   // Add a shadow to the header when scrolling
   useEffect(() => {

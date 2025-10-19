@@ -7,11 +7,17 @@
   --c-text: #0f172a;
   --c-primary: #3a0ca3;
   --c-primary-press: #3d18cc;
-
+  --c-line: #e2e8f0;
   /* shadow */
   --shadow: 0 18px 40px rgba(2, 6, 23, 0.08);
+  --c-primary-rgb: 58, 12, 163;
+  --c-primary-hover-bg: rgba(var(--c-primary-rgb), 0.3);
 }
 
+body.body-no-scroll {
+  overflow: hidden;
+  padding-right: var(--scrollbar-comp, 0px);
+}
 /* ---- Utilities ---- */
 .container {
   max-width: var(--container-max);
@@ -28,7 +34,6 @@
   z-index: 50;
   color: var(--c-text);
 
-  /* mobile: kenar boşluğu yok; büyük ekranlarda kademeli artacak */
   margin-inline: 0;
 
   &__inner {
@@ -36,6 +41,7 @@
     display: grid;
     grid-template-columns: auto 1fr auto; /* hamburger | brand | actions */
     align-items: center;
+    grid-template-areas: "brand . toggle";
     gap: 12px;
   }
 
@@ -61,7 +67,8 @@
   gap: 10px;
   text-decoration: none;
   color: inherit;
-  justify-self: center;
+  justify-self: start;
+  grid-area: brand;
 
   &__badge {
     width: 36px;
@@ -96,6 +103,8 @@
   place-content: center;
   gap: 4px;
   cursor: pointer;
+  grid-area: toggle;
+  justify-self: end;
 
   .nav-toggle__bar {
     width: 18px;
@@ -143,7 +152,24 @@
   font-weight: 500;
 
   &:hover {
-    background: #4361ee4d;
+    background: var(--c-primary-hover-bg);
+  }
+  /* Active route state */
+  .is-active {
+    color: var(--c-primary);
+    position: relative;
+
+    /* İstersen çok ince bir alt çizgi: tasarımı bozmadan ipucu */
+    &::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: -6px; /* mevcut satır yüksekliğine göre ufak bir offset */
+      height: 2px;
+      background: var(--c-primary);
+      border-radius: 1px;
+    }
   }
 }
 
@@ -253,7 +279,9 @@
   .site-header__inner {
     grid-template-columns: 1fr auto 1fr; /* nav | brand | actions */
   }
-
+  .brand {
+    justify-self: center;
+  }
   .site-header {
     margin-inline: 120px;
   }
