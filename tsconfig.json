@@ -4,17 +4,19 @@
     { "path": "./tsconfig.app.json" },
     { "path": "./tsconfig.node.json" }
   ],
-
   "compilerOptions": {
+    "target": "es6",
+    "module": "esnext",
+    "moduleResolution": "bundler",
     "baseUrl": ".",
     "paths": {
       "@/*": ["src/*"],
-      "@src/*": ["src/*"],
       "@styles/*": ["src/styles/*"],
-      "@components/*": ["src/components/*"],
-      "@pages/*": ["src/pages/*"],
-      "@images/*": ["src/assets/images/*"],
-      "@icons/*": ["src/assets/icons/*"]
-    }
+      "@components/*": ["src/components/*"]
+    },
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true
   }
+
 }
