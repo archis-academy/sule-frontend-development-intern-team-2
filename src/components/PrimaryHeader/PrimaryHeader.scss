@@ -33,16 +33,61 @@ body.body-no-scroll {
   top: 0;
   z-index: 50;
   color: var(--c-text);
-
   margin-inline: 0;
 
   &__inner {
     min-height: var(--header-height);
     display: grid;
-    grid-template-columns: auto 1fr auto; /* hamburger | brand | actions */
+    grid-template-columns: auto 1fr auto; /* left | center | right */
     align-items: center;
-    grid-template-areas: "brand . toggle";
     gap: 12px;
+
+    /* ---- Yerleşimler ---- */
+    .nav-toggle {           /* hamburger */
+      grid-column: 1;
+      justify-self: start;
+    }
+
+    .primary-nav {          /* linkler */
+      grid-column: 1;       /* hamburger ile aynı sol sütunda */
+      justify-self: start;
+    }
+
+    .brand {                /* LOGO tam ortada */
+      grid-column: 2;
+      justify-self: center;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: inherit;
+
+      &__badge {
+        width: 36px;
+        height: 36px;
+        display: grid;
+        place-items: center;
+        border-radius: 50px;
+        background: var(--c-primary);
+
+        img {
+          width: 22px;
+          height: 22px;
+          display: block;
+        }
+      }
+
+      &__text {
+        font-size: 18px;
+        font-weight: 700;
+        letter-spacing: 0.2px;
+      }
+    }
+
+    .header-actions--desktop { /* sağ taraf */
+      grid-column: 3;
+      justify-self: end;
+    }
   }
 
   &--sticky {
@@ -60,37 +105,7 @@ body.body-no-scroll {
   border-radius: 12px;
 }
 
-/* ---- Brand ---- */
-.brand {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  text-decoration: none;
-  color: inherit;
-  justify-self: start;
-  grid-area: brand;
 
-  &__badge {
-    width: 36px;
-    height: 36px;
-    display: grid;
-    place-items: center;
-    border-radius: 50px;
-    background: var(--c-primary);
-
-    img {
-      width: 22px;
-      height: 22px;
-      display: block;
-    }
-  }
-
-  &__text {
-    font-size: 18px; /* mobile default */
-    font-weight: 700;
-    letter-spacing: 0.2px;
-  }
-}
 
 /* ---- Hamburger ---- */
 .nav-toggle {
@@ -251,22 +266,6 @@ body.body-no-scroll {
   margin: 0;
   z-index: 30;
 }
-.site-header__inner {
-  display: grid;
-  grid-template-columns: auto 1fr auto; /* left | center | right */
-  align-items: center;
-  gap: 12px;
-}
-
-.brand {
-  grid-column: 2;          /* ortadaki sütun */
-  justify-self: center;    /* yatayda merkezle */
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-}
-
-
 /* ---- Motion preference ---- */
 @media (prefers-reduced-motion: reduce) {
   .nav-list {
