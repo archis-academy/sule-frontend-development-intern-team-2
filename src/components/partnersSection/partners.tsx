@@ -11,19 +11,19 @@ const Partners: React.FC = () => {
       image: "amazon.png",
     },
     {
-      name: "Microsoft",
+      name: "Logitech",
       image: "logitech.png",
     },
     {
-      name: "Microsoft",
+      name: "Spotify",
       image: "spotify.png",
     },
     {
-      name: "Microsoft",
+      name: "Samsung",
       image: "samsung.png",
     },
     {
-      name: "Microsoft",
+      name: "Netflix",
       image: "netflix.png",
     },
   ];
@@ -34,11 +34,12 @@ const Partners: React.FC = () => {
       </div>
       <h6>Trusted by 100+ Companies across the globe! </h6>
       <ul className={styles.logos}>
-        {partners.map((partner, index) => (
-          <li key={index} className={styles.logo}>
-            <img src={partner.image} alt={partner.name} />
-          </li>
-        ))}
+     {partners.map((partner) => (
+  <li key={partner.image} className={styles.logo}>
+    <img src={partner.image} alt={partner.name} />
+  </li>
+))}
+
       </ul>
     </section>
   );
