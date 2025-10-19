@@ -1,5 +1,31 @@
 import type { FormEvent, JSX } from "react";
-import "./Footer.scss";
+import { NavLink } from "react-router-dom";
+import styles from "./Footer.module.scss";
+
+import houseIcon from "@/assets/icons/14-House.svg";
+import phoneIcon from "@/assets/icons/phone.svg";
+import mailIcon from "@/assets/icons/icon-mail.svg";
+import instagram from "@/assets/icons/icon_instagram.svg";
+import linkedin from "@/assets/icons/icon_linkedin.svg";
+import facebook from "@/assets/icons/facebook.svg";
+import arrow from "@/assets/icons/Arrow.svg";
+
+const QUICK_LINKS: Array<{ to: string; label: string }> = [
+  { to: "/", label: "Home" },
+  { to: "/about", label: "About" },
+  { to: "/listings", label: "Listings" },
+  { to: "/services", label: "Services" },
+  { to: "/blog", label: "Blogs" },
+  { to: "/become-agent", label: "Become a Agent" },
+];
+
+const DISCOVERY_LINKS: Array<{ to: string; label: string }> = [
+  { to: "/listings?region=Canada", label: "Canada" },
+  { to: "/listings?region=United%20States", label: "United States" },
+  { to: "/listings?region=Germany", label: "Germany" },
+  { to: "/listings?region=Africa", label: "Africa" },
+  { to: "/listings?region=India", label: "India" },
+];
 
 export default function Footer(): JSX.Element {
   const onSubscribe = (e: FormEvent<HTMLFormElement>): void => {
@@ -10,94 +36,70 @@ export default function Footer(): JSX.Element {
   };
 
   return (
-    <footer className="site-footer">
-      <div className="container footer__grid">
-        {/* Brand + contact */}
-        <div className="footer__brand">
-          <a href="/" className="footer__logo">
-            <span className="footer__badge" aria-hidden="true">
-              <img src="src/assets/icons/14-House.svg" alt="Rezilla" />
+    <footer className={styles["site-footer"]}>
+      <div className={`${styles.container ?? ""} ${styles["footer__grid"]}`}>
+        <div className={styles["footer__brand"]}>
+          <a href="/" className={styles["footer__logo"]}>
+            <span className={styles["footer__badge"]} aria-hidden="true">
+              <img src={houseIcon} alt="Rezilla" />
             </span>
-            <span className="footer__brandText">Rezilla</span>
+            <span className={styles["footer__brandText"]}>Rezilla</span>
           </a>
 
-          <address className="footer__addr">
+          <address className={styles["footer__addr"]}>
             2728 Hickory Street
             <br />
             Salt Lake City, UT 84104
           </address>
 
-          <a className="footer__contact" href="tel:+12062142298">
-            <span className="footer__icon" aria-hidden="true">
-              <img src="src/assets/icons/phone.svg" alt="phone" />
+          <a className={styles["footer__contact"]} href="tel:+12062142298">
+            <span className={styles["footer__icon"]} aria-hidden="true">
+              <img src={phoneIcon} alt="phone" />
             </span>
             <span>+1 206–214–2298</span>
           </a>
 
-          <a className="footer__contact" href="mailto:support@rezilla.com">
-            <span className="footer__icon" aria-hidden="true">
-              <img src="src/assets/icons/icon-mail.svg" alt="mail" />
+          <a
+            className={styles["footer__contact"]}
+            href="mailto:support@rezilla.com"
+          >
+            <span className={styles["footer__icon"]} aria-hidden="true">
+              <img src={mailIcon} alt="mail" />
             </span>
             <span>support@rezilla.com</span>
           </a>
         </div>
 
-        {/* Quick Links */}
-        <nav className="footer__col" aria-label="Quick Links">
-          <h3 className="footer__title">Quick Links</h3>
-          <ul className="footer__links">
-            <li>
-              <a href="#">Home</a>
-            </li>
-            <li>
-              <a href="#">About</a>
-            </li>
-            <li>
-              <a href="#">Listings</a>
-            </li>
-            <li>
-              <a href="#">Services</a>
-            </li>
-            <li>
-              <a href="#">Blogs</a>
-            </li>
-            <li>
-              <a href="#">Become a Agent</a>
-            </li>
+        <nav className={styles["footer__col"]} aria-label="Quick Links">
+          <h3 className={styles["footer__title"]}>Quick Links</h3>
+          <ul className={styles["footer__links"]}>
+            {QUICK_LINKS.map((link) => (
+              <li key={link.to}>
+                <NavLink to={link.to}>{link.label}</NavLink>
+              </li>
+            ))}
           </ul>
         </nav>
 
-        {/* Discovery */}
-        <nav className="footer__col" aria-label="Discovery">
-          <h3 className="footer__title">Discovery</h3>
-          <ul className="footer__links">
-            <li>
-              <a href="#">Canada</a>
-            </li>
-            <li>
-              <a href="#">United States</a>
-            </li>
-            <li>
-              <a href="#">Germany</a>
-            </li>
-            <li>
-              <a href="#">Africa</a>
-            </li>
-            <li>
-              <a href="#">India</a>
-            </li>
+        <nav className={styles["footer__col"]} aria-label="Discovery">
+          <h3 className={styles["footer__title"]}>Discovery</h3>
+          <ul className={styles["footer__links"]}>
+            {DISCOVERY_LINKS.map((link) => (
+              <li key={link.to}>
+                <NavLink to={link.to}>{link.label}</NavLink>
+              </li>
+            ))}
           </ul>
         </nav>
 
-        {/* Newsletter + Socials */}
-        <div className="footer__col">
-          <h3 className="footer__title">
+        <div className={styles["footer__col"]}>
+          <h3 className={styles["footer__title"]}>
             Subscribe to our
             <br />
             Newsletter!
           </h3>
 
-          <form className="newsletter" onSubmit={onSubscribe}>
+          <form className={styles.newsletter} onSubmit={onSubscribe}>
             <input
               id="newsletter-email"
               name="email"
@@ -108,81 +110,61 @@ export default function Footer(): JSX.Element {
             />
             <button
               type="submit"
-              className="newsletter__btn"
+              className={styles["newsletter__btn"]}
               aria-label="Subscribe"
             >
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-                <path
-                  d="M5 12h14M13 5l7 7-7 7"
-                  stroke="white"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
+              <img src={arrow} alt="arrow" />
             </button>
           </form>
 
-          <div className="footer__social">
-            <span className="footer__title footer__title--small">
+          <div className={styles["footer__social"]}>
+            <span
+              className={`${styles["footer__title"]} ${styles["footer__title--small"]}`}
+            >
               Follow Us on
             </span>
-            <div className="footer__socialRow">
-              <a href="#" aria-label="LinkedIn" className="footer__socialLink">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-                  <path
-                    d="M4.98 3.5C4.98 4.88 3.86 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5ZM0 8h5v16H0V8Zm7.5 0h4.8v2.2h.06c.67-1.27 2.3-2.6 4.73-2.6 5.06 0 6 3.33 6 7.66V24h-5V16.5c0-1.79-.03-4.08-2.49-4.08-2.49 0-2.88 1.94-2.88 3.95V24h-5V8Z"
-                    fill="currentColor"
-                  />
-                </svg>
+            <div className={styles["footer__socialRow"]}>
+              <a
+                href="#"
+                aria-label="LinkedIn"
+                className={styles["footer__socialLink"]}
+              >
+                <img src={linkedin} alt="linkedin" />
               </a>
-              <a href="#" aria-label="Facebook" className="footer__socialLink">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-                  <path
-                    d="M13 22v-8h3l1-4h-4V7.5c0-1.1.9-2 2-2h2V2h-3a5 5 0 0 0-5 5V10H6v4h3v8h4Z"
-                    fill="currentColor"
-                  />
-                </svg>
+              <a
+                href="#"
+                aria-label="Facebook"
+                className={styles["footer__socialLink"]}
+              >
+                <img src={facebook} alt="facebook" />
               </a>
-              <a href="#" aria-label="Instagram" className="footer__socialLink">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-                  <rect
-                    x="2"
-                    y="2"
-                    width="20"
-                    height="20"
-                    rx="5"
-                    stroke="currentColor"
-                    strokeWidth="1.8"
-                  />
-                  <circle
-                    cx="12"
-                    cy="12"
-                    r="4"
-                    stroke="currentColor"
-                    strokeWidth="1.8"
-                  />
-                  <circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" />
-                </svg>
+              <a
+                href="#"
+                aria-label="Instagram"
+                className={styles["footer__socialLink"]}
+              >
+                <img src={instagram} alt="instagram" />
               </a>
             </div>
           </div>
         </div>
       </div>
 
-      <div className="footer__bar">
-        <div className="container footer__barRow">
+      <div className={styles["footer__bar"]}>
+        <div
+          className={`${styles.container ?? ""} ${styles["footer__barRow"]}`}
+        >
           <small>© Rezilla — All rights reserved</small>
           <nav aria-label="Legal">
-            <ul className="footer__legal">
+            <ul className={styles["footer__legal"]}>
               <li>
-                <a href="#">Terms and Conditions</a>
+                <NavLink to="/legal/terms">Terms and Conditions</NavLink>
               </li>
               <li>
-                <a href="#">Privacy Policy</a>
+                <NavLink to="/legal/privacy">Privacy Policy</NavLink>
               </li>
               <li>
-                <a href="#">Disclaimer</a>
+                <NavLink to="/legal/disclaimer">Disclaimer</NavLink>
               </li>
             </ul>
           </nav>
