@@ -64,9 +64,10 @@ export default function PrimaryHeader(): JSX.Element {
     setSticky(window.scrollY > 8);
   }, []);
   useEffect(() => {
-    handleScroll(); // ✅ sayfa scroll'lu halde yenilenirse ilk anda doğru state
+    handleScroll(); 
   }, [handleScroll]);
   useEventListener("scroll", handleScroll, { passive: true }, window);
+  
 
   // Close menu when route changes
   useEffect(() => {
