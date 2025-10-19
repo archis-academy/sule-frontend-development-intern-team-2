@@ -1,7 +1,11 @@
-import Welcome from "@components/welcome/welcome";
 
+import Location from "@components/location/location";
 function Home() {
-  return <Welcome />;
+  return (
+    <>
+      <Location />
+    </> 
+  );
 }
 
 export default Home;

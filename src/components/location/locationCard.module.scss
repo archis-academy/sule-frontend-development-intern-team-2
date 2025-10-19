@@ -1,0 +1,62 @@
+@use "@styles/variables.scss" as *;
+
+
+.locationCard {
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  &:hover {
+    transform: translateY(-5px); 
+  }
+  
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; 
+  display: flex;
+}
+
+.contentOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end; 
+  color: white;
+  
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0.2) 50%,
+    rgba(0, 0, 0, 0.7) 100%
+  );
+}
+
+.properties {
+font-family: $secondary-font;
+font-weight: 600;
+font-size: clamp(24px, 4.5vw, 39.8px);
+line-height: 65px;
+letter-spacing: 0%;
+opacity: 0.6;
+padding: 0;
+
+}
+
+.name {
+font-family: $secondary-font;
+font-weight: 500;
+font-style: Medium;
+font-size: clamp(16px, 2.5vw, 19.4px);
+line-height: 100%;
+letter-spacing: 0%;
+}
