@@ -1,9 +1,9 @@
-import { useEffect, useRef, useState, type JSX } from "react";
+import { useCallback, useEffect, useRef, useState, type JSX } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 import "./PrimaryHeader.scss";
 
-import HouseIcon from "../assets/14-House.svg";
-import UserIcon from "../assets/human.svg";
+import HouseIcon from "../assets/14-House.svg?react";
+import UserIcon from "../assets/human.svg?react";
 
 const NAV_LINKS = [
   { to: "/", label: "Home" },
@@ -24,7 +24,6 @@ function useEventListener(
 ) {
   const saved = useRef(listener);
 
-  // Update saved listener if it changes
   useEffect(() => {
     saved.current = listener;
   }, [listener]);
@@ -40,8 +39,8 @@ function useEventListener(
    Component: PrimaryHeader
    =============================== */
 export default function PrimaryHeader(): JSX.Element {
-  const [open, setOpen] = useState<boolean>(false);
-  const [sticky, setSticky] = useState<boolean>(false);
+  const [open, setOpen] = useState(false);
+  const [sticky, setSticky] = useState(false);
   const menuRef = useRef<HTMLUListElement | null>(null);
   const firstLinkRef = useRef<HTMLAnchorElement | null>(null);
   const location = useLocation();
@@ -60,17 +59,14 @@ export default function PrimaryHeader(): JSX.Element {
     if ((e as KeyboardEvent).key === "Escape") setOpen(false);
   });
 
-  // Add shadow on scroll
-  useEffect(() => {
+  // Sticky: scroll handler + initial check on mount
+  const handleScroll = useCallback(() => {
     setSticky(window.scrollY > 8);
   }, []);
-
-  useEventListener(
-    "scroll",
-    () => setSticky(window.scrollY > 8),
-    { passive: true },
-    window
-  );
+  useEffect(() => {
+    handleScroll(); // ✅ sayfa scroll'lu halde yenilenirse ilk anda doğru state
+  }, [handleScroll]);
+  useEventListener("scroll", handleScroll, { passive: true }, window);
 
   // Close menu when route changes
   useEffect(() => {
@@ -141,14 +137,14 @@ export default function PrimaryHeader(): JSX.Element {
             {/* Mobile: user actions inside the hamburger menu */}
             <li className="nav-actions">
               <NavLink to="/login" className="header-actions__link">
-                <img src={UserIcon as string} alt="" aria-hidden="true" />
+                <UserIcon aria-hidden="true" />
                 <span>Login/Register</span>
               </NavLink>
               <NavLink
                 to="/add-listing"
                 className="btn btn--primary header-actions__cta"
               >
-                <img src={HouseIcon as string} alt="" aria-hidden="true" />
+                <HouseIcon aria-hidden="true" />
                 <span>Add Listing</span>
               </NavLink>
             </li>
@@ -163,7 +159,7 @@ export default function PrimaryHeader(): JSX.Element {
           title="Go to homepage"
         >
           <span className="brand__badge" aria-hidden="true">
-            <img src={HouseIcon as string} alt="" />
+            <HouseIcon aria-hidden="true" />
           </span>
           <span className="brand__text">Rezilla</span>
         </NavLink>
@@ -171,14 +167,14 @@ export default function PrimaryHeader(): JSX.Element {
         {/* RIGHT (Desktop only): User actions */}
         <div className="header-actions header-actions--desktop">
           <NavLink to="/login" className="header-actions__link">
-            <img src={UserIcon as string} alt="" aria-hidden="true" />
+            <UserIcon aria-hidden="true" />
             <span>Login/Register</span>
           </NavLink>
           <NavLink
             to="/add-listing"
             className="btn btn--primary header-actions__cta"
           >
-            <img src={HouseIcon as string} alt="" aria-hidden="true" />
+            <HouseIcon aria-hidden="true" />
             <span>Add Listing</span>
           </NavLink>
         </div>

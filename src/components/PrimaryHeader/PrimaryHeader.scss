@@ -42,18 +42,18 @@ body.body-no-scroll {
     align-items: center;
     gap: 12px;
 
-    /* ---- Yerleşimler ---- */
+
     .nav-toggle {           /* hamburger */
       grid-column: 1;
       justify-self: start;
     }
 
-    .primary-nav {          /* linkler */
-      grid-column: 1;       /* hamburger ile aynı sol sütunda */
+    .primary-nav {          
+      grid-column: 1;       
       justify-self: start;
     }
 
-    .brand {                /* LOGO tam ortada */
+    .brand {                
       grid-column: 2;
       justify-self: center;
       display: inline-flex;
@@ -84,7 +84,7 @@ body.body-no-scroll {
       }
     }
 
-    .header-actions--desktop { /* sağ taraf */
+    .header-actions--desktop { 
       grid-column: 3;
       justify-self: end;
     }
@@ -160,7 +160,7 @@ body.body-no-scroll {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 12px 14px; /* mobile hit area daha büyük */
+  padding: 12px 14px; 
   border-radius: 50px;
   color: var(--c-text);
   text-decoration: none;
@@ -174,13 +174,13 @@ body.body-no-scroll {
     color: var(--c-primary);
     position: relative;
 
-    /* İstersen çok ince bir alt çizgi: tasarımı bozmadan ipucu */
+   
     &::after {
       content: "";
       position: absolute;
       left: 0;
       right: 0;
-      bottom: -6px; /* mevcut satır yüksekliğine göre ufak bir offset */
+      bottom: -6px; 
       height: 2px;
       background: var(--c-primary);
       border-radius: 1px;
