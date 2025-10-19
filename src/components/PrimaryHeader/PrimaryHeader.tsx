@@ -10,7 +10,7 @@ const NAV_LINKS = [
   { to: "/about", label: "About" },
   { to: "/listings", label: "Listings" },
   { to: "/services", label: "Services" },
-  { to: "/blog", label: "Blogs" },
+  { to: "/blog", label: "Blog" },
 ];
 
 /* ===============================
@@ -99,46 +99,77 @@ export default function PrimaryHeader(): JSX.Element {
   }, [open]);
 
   return (
-<header className={`site-header ${sticky ? "site-header--sticky" : ""}`}>
-  <div className="container site-header__inner">
-    {/* LEFT: Hamburger + Navigation */}
-    <button
-      className="nav-toggle"
-      aria-controls="primary-nav"
-      aria-expanded={open ? "true" : "false"}
-      aria-label={open ? "Close menu" : "Open menu"}
-      onClick={() => setOpen((prev) => !prev)}
-      type="button"
-    >
-      <span className="nav-toggle__bar" />
-      <span className="nav-toggle__bar" />
-      <span className="nav-toggle__bar" />
-    </button>
+    <header className={`site-header ${sticky ? "site-header--sticky" : ""}`}>
+      <div className="container site-header__inner">
+        {/* LEFT: Hamburger + Navigation */}
+        <button
+          className="nav-toggle"
+          aria-controls="primary-nav"
+          aria-expanded={open ? "true" : "false"}
+          aria-label={open ? "Close menu" : "Open menu"}
+          onClick={() => setOpen((prev) => !prev)}
+          type="button"
+        >
+          <span className="nav-toggle__bar" />
+          <span className="nav-toggle__bar" />
+          <span className="nav-toggle__bar" />
+        </button>
 
-    <nav className="primary-nav" aria-label="Primary">
-      <ul
-        id="primary-nav"
-        ref={menuRef}
-        className={`nav-list ${open ? "is-open" : ""}`}
-        role={open ? "dialog" : undefined}
-        aria-modal={open ? "true" : undefined}
-      >
-        {NAV_LINKS.map((item, idx) => (
-          <li key={item.to}>
-            <NavLink
-              to={item.to}
-              className={({ isActive }) =>
-                `nav-link ${isActive ? "is-active" : ""}`
-              }
-              ref={idx === 0 ? firstLinkRef : undefined}
-            >
-              {item.label}
-            </NavLink>
-          </li>
-        ))}
+        <nav className="primary-nav" aria-label="Primary">
+          {/* On mobile, the nav acts as a modal dialog when opened */}
+          <ul
+            id="primary-nav"
+            ref={menuRef}
+            className={`nav-list ${open ? "is-open" : ""}`}
+            role={open ? "dialog" : undefined}
+            aria-modal={open ? "true" : undefined}
+          >
+            {NAV_LINKS.map((item, idx) => (
+              <li key={item.to}>
+                <NavLink
+                  to={item.to}
+                  className={({ isActive }) =>
+                    `nav-link ${isActive ? "is-active" : ""}`
+                  }
+                  ref={idx === 0 ? firstLinkRef : undefined}
+                >
+                  {item.label}
+                </NavLink>
+              </li>
+            ))}
 
-        {/* Mobile: actions inside hamburger */}
-        <li className="nav-actions">
+            {/* Mobile: user actions inside the hamburger menu */}
+            <li className="nav-actions">
+              <NavLink to="/login" className="header-actions__link">
+                <img src={UserIcon as string} alt="" aria-hidden="true" />
+                <span>Login/Register</span>
+              </NavLink>
+              <NavLink
+                to="/add-listing"
+                className="btn btn--primary header-actions__cta"
+              >
+                <img src={HouseIcon as string} alt="" aria-hidden="true" />
+                <span>Add Listing</span>
+              </NavLink>
+            </li>
+          </ul>
+        </nav>
+
+        {/* CENTER: Brand logo */}
+        <NavLink
+          to="/"
+          className="brand"
+          aria-label="Go to homepage"
+          title="Go to homepage"
+        >
+          <span className="brand__badge" aria-hidden="true">
+            <img src={HouseIcon as string} alt="" />
+          </span>
+          <span className="brand__text">Rezilla</span>
+        </NavLink>
+
+        {/* RIGHT (Desktop only): User actions */}
+        <div className="header-actions header-actions--desktop">
           <NavLink to="/login" className="header-actions__link">
             <img src={UserIcon as string} alt="" aria-hidden="true" />
             <span>Login/Register</span>
@@ -150,43 +181,17 @@ export default function PrimaryHeader(): JSX.Element {
             <img src={HouseIcon as string} alt="" aria-hidden="true" />
             <span>Add Listing</span>
           </NavLink>
-        </li>
-      </ul>
-    </nav>
+        </div>
+      </div>
 
-    {/* CENTER: Brand logo */}
-    <NavLink to="/" className="brand" aria-label="Rezilla Home">
-      <span className="brand__badge" aria-hidden="true">
-        <img src={HouseIcon as string} alt="" />
-      </span>
-      <span className="brand__text">Rezilla</span>
-    </NavLink>
-
-    {/* RIGHT (Desktop): User actions */}
-    <div className="header-actions header-actions--desktop">
-      <NavLink to="/login" className="header-actions__link">
-        <img src={UserIcon as string} alt="" aria-hidden="true" />
-        <span>Login/Register</span>
-      </NavLink>
-      <NavLink
-        to="/add-listing"
-        className="btn btn--primary header-actions__cta"
-      >
-        <img src={HouseIcon as string} alt="" aria-hidden="true" />
-        <span>Add Listing</span>
-      </NavLink>
-    </div>
-  </div>
-
-  {/* Overlay when menu is open */}
-  {open && (
-    <button
-      className="nav-overlay"
-      aria-label="Close menu overlay"
-      onClick={() => setOpen(false)}
-    />
-  )}
-</header>
-
+      {/* Overlay background when mobile menu is open */}
+      {open && (
+        <button
+          className="nav-overlay"
+          aria-label="Close menu overlay"
+          onClick={() => setOpen(false)}
+        />
+      )}
+    </header>
   );
 }
