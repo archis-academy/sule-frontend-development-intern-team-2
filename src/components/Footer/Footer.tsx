@@ -3,8 +3,8 @@ import { NavLink } from "react-router-dom";
 import styles from "./Footer.module.scss";
 
 import houseIcon from "@/assets/icons/14-House.svg";
-import phoneIcon from "@/assets/icons/phone.svg";
-import mailIcon from "@/assets/icons/icon-mail.svg";
+import phoneIcon from "@/assets/icons/black_phone.svg";
+import mailIcon from "@/assets/icons/black_mail.svg";
 import instagram from "@/assets/icons/icon_instagram.svg";
 import linkedin from "@/assets/icons/icon_linkedin.svg";
 import facebook from "@/assets/icons/facebook.svg";
