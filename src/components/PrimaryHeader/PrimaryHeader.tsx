@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useRef, useState, type JSX } from "react";
 import { NavLink, useLocation } from "react-router-dom";
+import cn from "classnames";
 import "./PrimaryHeader.scss";
 
 import HouseIcon from "../assets/14-House.svg?react";
@@ -64,31 +65,29 @@ export default function PrimaryHeader(): JSX.Element {
     setSticky(window.scrollY > 8);
   }, []);
   useEffect(() => {
-    handleScroll(); 
+    handleScroll();
   }, [handleScroll]);
   useEventListener("scroll", handleScroll, { passive: true }, window);
-  
 
   // Close menu when route changes
   useEffect(() => {
     setOpen(false);
   }, [location.pathname]);
 
-  // Disable body scroll when menu is open
+  // Disable body scroll when menu is open + focus first item
   useEffect(() => {
     const { body } = document;
     if (open) {
       const scrollbarComp =
         window.innerWidth - document.documentElement.clientWidth;
-      body.style.setProperty(
-        "--scrollbar-comp",
-        `${Math.max(0, scrollbarComp)}px`
-      );
+      body.style.setProperty("--scrollbar-comp", `${Math.max(0, scrollbarComp)}px`);
       body.classList.add("body-no-scroll");
 
-      setTimeout(() => firstLinkRef.current?.focus(), 0);
+      // Render sonrasında odak için kısa gecikme (gerekirse flushSync'e geçilebilir)
+      const id = setTimeout(() => firstLinkRef.current?.focus(), 0);
 
       return () => {
+        clearTimeout(id);
         body.classList.remove("body-no-scroll");
         body.style.removeProperty("--scrollbar-comp");
       };
@@ -96,7 +95,9 @@ export default function PrimaryHeader(): JSX.Element {
   }, [open]);
 
   return (
-    <header className={`site-header ${sticky ? "site-header--sticky" : ""}`}>
+    <header
+      className={cn("site-header", { "site-header--sticky": sticky })}
+    >
       <div className="container site-header__inner">
         {/* LEFT: Hamburger + Navigation */}
         <button
@@ -117,7 +118,7 @@ export default function PrimaryHeader(): JSX.Element {
           <ul
             id="primary-nav"
             ref={menuRef}
-            className={`nav-list ${open ? "is-open" : ""}`}
+            className={cn("nav-list", { "is-open": open })}
             role={open ? "dialog" : undefined}
             aria-modal={open ? "true" : undefined}
           >
@@ -126,7 +127,7 @@ export default function PrimaryHeader(): JSX.Element {
                 <NavLink
                   to={item.to}
                   className={({ isActive }) =>
-                    `nav-link ${isActive ? "is-active" : ""}`
+                    cn("nav-link", { "is-active": isActive })
                   }
                   ref={idx === 0 ? firstLinkRef : undefined}
                 >
@@ -187,6 +188,7 @@ export default function PrimaryHeader(): JSX.Element {
           className="nav-overlay"
           aria-label="Close menu overlay"
           onClick={() => setOpen(false)}
+          type="button"
         />
       )}
     </header>

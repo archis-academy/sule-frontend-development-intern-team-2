@@ -8,16 +8,19 @@
   --c-primary: #3a0ca3;
   --c-primary-press: #3d18cc;
   --c-line: #e2e8f0;
-  /* shadow */
+
   --shadow: 0 18px 40px rgba(2, 6, 23, 0.08);
+
   --c-primary-rgb: 58, 12, 163;
   --c-primary-hover-bg: rgba(var(--c-primary-rgb), 0.3);
 }
 
+/* scroll-lock (JS: body.classList.add('body-no-scroll')) */
 body.body-no-scroll {
   overflow: hidden;
   padding-right: var(--scrollbar-comp, 0px);
 }
+
 /* ---- Utilities ---- */
 .container {
   max-width: var(--container-max);
@@ -28,34 +31,33 @@ body.body-no-scroll {
 
 /* ---- Header Root ---- */
 .site-header {
-  background: var(--c-bg);
   position: sticky;
   top: 0;
   z-index: 50;
+  background: var(--c-bg);
   color: var(--c-text);
   margin-inline: 0;
 
   &__inner {
     min-height: var(--header-height);
     display: grid;
-    grid-template-columns: auto 1fr auto; /* left | center | right */
+    grid-template-columns: 1fr auto; /* MOBILE: brand | toggle */
     align-items: center;
     gap: 12px;
 
+    /* hepsi aynı satırda kalsın (kritik) */
+    .brand,
+    .nav-toggle,
+    .primary-nav,
+    .header-actions--desktop {
+      grid-row: 1;
+      align-self: center;
+    }
 
-    .nav-toggle {           /* hamburger */
+    /* brand: sol */
+    .brand {
       grid-column: 1;
       justify-self: start;
-    }
-
-    .primary-nav {          
-      grid-column: 1;       
-      justify-self: start;
-    }
-
-    .brand {                
-      grid-column: 2;
-      justify-self: center;
       display: inline-flex;
       align-items: center;
       gap: 10px;
@@ -65,12 +67,13 @@ body.body-no-scroll {
       &__badge {
         width: 36px;
         height: 36px;
+        border-radius: 50px;
         display: grid;
         place-items: center;
-        border-radius: 50px;
         background: var(--c-primary);
 
-        img {
+        img,
+        svg {
           width: 22px;
           height: 22px;
           display: block;
@@ -81,12 +84,26 @@ body.body-no-scroll {
         font-size: 18px;
         font-weight: 700;
         letter-spacing: 0.2px;
+        line-height: 1;
       }
     }
 
-    .header-actions--desktop { 
-      grid-column: 3;
+    /* hamburger: sağ */
+    .nav-toggle {
+      grid-column: 2;
       justify-self: end;
+      align-self: center;
+    }
+
+    /* nav kapsayıcı (mobilde de aynı satırda) */
+    .primary-nav {
+      grid-column: 1 / -1; /* mobilde geniş yer kaplamasın ama aynı satırda kalsın */
+      justify-self: start;
+    }
+
+    /* desktop actions mobilde gizli */
+    .header-actions--desktop {
+      display: none;
     }
   }
 
@@ -95,7 +112,7 @@ body.body-no-scroll {
   }
 }
 
-/* ---- Focus visibility (a11y) ---- */
+/* ---- Focus visibility ---- */
 .nav-link:focus-visible,
 .header-actions__link:focus-visible,
 .btn:focus-visible,
@@ -104,8 +121,6 @@ body.body-no-scroll {
   outline-offset: 2px;
   border-radius: 12px;
 }
-
-
 
 /* ---- Hamburger ---- */
 .nav-toggle {
@@ -118,22 +133,20 @@ body.body-no-scroll {
   place-content: center;
   gap: 4px;
   cursor: pointer;
-  grid-area: toggle;
-  justify-self: end;
 
   .nav-toggle__bar {
     width: 18px;
     height: 2px;
+    border-radius: 2px;
     background: var(--c-text);
     display: block;
-    border-radius: 2px;
   }
 }
 
 /* ---- Nav list + links (mobile modal) ---- */
 .nav-list {
   position: fixed;
-  inset: calc(var(--header-height)) 0 auto 0; /* below header */
+  inset: calc(var(--header-height)) 0 auto 0; /* header'ın altında */
   background: var(--c-bg);
   border-bottom: 1px solid var(--c-line);
   display: grid;
@@ -160,27 +173,28 @@ body.body-no-scroll {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 12px 14px; 
+  padding: 12px 14px;
   border-radius: 50px;
   color: var(--c-text);
   text-decoration: none;
   font-weight: 500;
+  line-height: 1;
 
   &:hover {
     background: var(--c-primary-hover-bg);
   }
-  /* Active route state */
-  .is-active {
+
+  /* React Router NavLink active */
+  &.is-active {
     color: var(--c-primary);
     position: relative;
 
-   
     &::after {
       content: "";
       position: absolute;
       left: 0;
       right: 0;
-      bottom: -6px; 
+      bottom: -6px;
       height: 2px;
       background: var(--c-primary);
       border-radius: 1px;
@@ -201,7 +215,8 @@ body.body-no-scroll {
     color: var(--c-text);
     text-decoration: none;
 
-    img {
+    img,
+    svg {
       width: 18px;
       height: 18px;
       display: block;
@@ -241,9 +256,14 @@ body.body-no-scroll {
       background: var(--c-primary-press);
     }
   }
+
+  svg {
+    width: 18px;
+    height: 18px;
+  }
 }
 
-/* ---- Actions in nav on mobile ---- */
+/* ---- Actions inside mobile nav ---- */
 .nav-actions {
   display: grid;
   gap: 24px;
@@ -262,10 +282,9 @@ body.body-no-scroll {
   inset: 0;
   background: rgba(2, 6, 23, 0.45);
   border: 0;
-  padding: 0;
-  margin: 0;
   z-index: 30;
 }
+
 /* ---- Motion preference ---- */
 @media (prefers-reduced-motion: reduce) {
   .nav-list {
@@ -274,39 +293,56 @@ body.body-no-scroll {
 }
 
 /* ===========================
-   ≥ 640px (sm) 
+   ≥ 640px (sm)
    =========================== */
 @media (min-width: 640px) {
   .container {
     padding-inline: 24px;
   }
-
   .brand__text {
     font-size: 19px;
   }
 }
 
 /* ===========================
-   ≥ 992px (lg) 
+   ≥ 992px (lg) — DESKTOP
    =========================== */
 @media (min-width: 992px) {
   .site-header__inner {
     grid-template-columns: 1fr auto 1fr; /* nav | brand | actions */
-  }
-  .brand {
-    justify-self: center;
-  }
-  .site-header {
-    margin-inline: 120px;
+    align-items: center;
   }
 
-  .nav-toggle {
+  /* özgüllük eşitle: mobil kuralları kesin ez */
+  .site-header__inner .primary-nav,
+  .site-header__inner .brand,
+  .site-header__inner .header-actions--desktop {
+    grid-row: 1;
+    align-self: center;
+  }
+
+  .site-header__inner .primary-nav {
+    grid-column: 1; /* SOL */
+    justify-self: start;
+  }
+
+  .site-header__inner .brand {
+    grid-column: 2; /* ORTA */
+    justify-self: center;
+  }
+
+  .site-header__inner .header-actions--desktop {
+    display: inline-flex; /* SAĞ */
+    grid-column: 3;
+    justify-self: end;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .site-header__inner .nav-toggle {
     display: none;
   }
 
-  .primary-nav {
-    justify-self: start;
-  }
 
   .nav-list {
     position: static;
@@ -317,6 +353,7 @@ body.body-no-scroll {
     align-items: center;
     gap: 6px;
     padding: 0;
+    margin: 0;
     opacity: 1;
     transform: none;
     pointer-events: auto;
@@ -325,14 +362,12 @@ body.body-no-scroll {
   .nav-link {
     padding: 10px 12px;
   }
-
-  .header-actions {
-    display: inline-flex;
-    align-items: center;
-  }
-
   .nav-actions {
     display: none;
+  }
+
+  .site-header {
+    margin-inline: 120px;
   }
 }
 
@@ -343,29 +378,24 @@ body.body-no-scroll {
   .brand__text {
     font-size: 20px;
   }
-
   .nav-link {
     padding: 10px 14px;
   }
-
   .btn {
     padding: 12px 16px;
   }
-
   .site-header {
     margin-inline: 160px;
   }
 }
 
 /* ===========================
-   ≥ 1536px (2xl) 
+   ≥ 1536px (2xl)
    =========================== */
 @media (min-width: 1536px) {
   .site-header {
-    margin-left: 240px;
-    margin-right: 240px;
-  }
-
+    margin-inline: 240px;
+  } /* shorthand */
   .brand__text {
     font-size: 22px;
   }
