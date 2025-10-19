@@ -3,7 +3,7 @@ import "./SecondaryHeader.scss";
 
 import LocationIcon from "@icons/icon-pin-alt.svg?react";
 import PhoneIcon from "@icons/phone.svg?react";
-import MailIcon from "@icons/icon-mail.svg?react";
+import MailIcon from "@icons/mail.svg?react";
 
 
 type SecondaryHeaderProps = {

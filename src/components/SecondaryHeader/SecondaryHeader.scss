@@ -42,6 +42,7 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  
 }
 
 /* Right cluster (phone + mail) */
@@ -49,12 +50,15 @@
   display: inline-flex;
   align-items: center;
   gap: var(--secondary-header-gap);
+ 
 }
 
 .secondary-header__icon {
   width: var(--secondary-header-icon-size);
   height: var(--secondary-header-icon-size);
   flex: 0 0 var(--secondary-header-icon-size);
+  /* Ensure icons are white (use current design token). SVGs should inherit these values */
+  color: var(--secondary-header-text);
 }
 
 /* Text */
