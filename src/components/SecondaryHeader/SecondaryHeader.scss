@@ -29,7 +29,7 @@
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  text-decoration: none; /* <a> için */
+  text-decoration: none;
   color: inherit;
 
   &:hover,
@@ -38,7 +38,6 @@
   }
 }
 
-/* Address bloğunun satıra sığması */
 .secondary-header__item--address {
   white-space: nowrap;
   overflow: hidden;
@@ -52,15 +51,10 @@
   gap: var(--secondary-header-gap);
 }
 
-/* Icons via SVGR (fill/stroke CSS’ten yönetilebilir) */
 .secondary-header__icon {
   width: var(--secondary-header-icon-size);
   height: var(--secondary-header-icon-size);
   flex: 0 0 var(--secondary-header-icon-size);
-
-  /* Iconları mevcut metin rengine bağlamak istersen: */
-  fill: currentColor;
-  stroke: currentColor;
 }
 
 /* Text */
@@ -75,7 +69,7 @@
     flex-direction: column;
     align-items: flex-start;
     gap: 8px;
-    padding-inline: 16px; /* mobile’de daha dar */
+    padding-inline: 16px;
   }
 
   .secondary-header__right {
