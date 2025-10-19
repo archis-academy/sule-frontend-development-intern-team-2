@@ -42,37 +42,6 @@
   opacity: 1;
 }
 
-.secondary-header__right {
-  display: flex;
-  align-items: center;
-  gap: var(--secondary-header-gap);
-}
-
-.secondary-header__icon {
-  display: grid;
-  place-items: center;
-}
-
-.secondary-header__icon svg {
-  width: var(--secondary-header-icon-size);
-  height: var(--secondary-header-icon-size);
-  display: block;
-  color: currentColor;
-  stroke: currentColor;
-}
-
-.secondary-header a {
-  color: inherit;
-  text-decoration: none;
-}
-
-/* Base adjustments (keeps your current desktop design) */
-.secondary-header {
-  background: #3a0ca3;
-  color: #fff;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-}
-
 .secondary-header__inner {
   min-height: 44px;
   display: flex;
