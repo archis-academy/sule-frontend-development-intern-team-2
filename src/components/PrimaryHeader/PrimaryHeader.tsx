@@ -13,6 +13,32 @@ const NAV_LINKS = [
   { to: "/blog", label: "Blogs" },
 ];
 
+/* ===============================
+   Custom Hook: useEventListener
+   =============================== */
+function useEventListener(
+  type: string,
+  listener: (e: Event) => void,
+  options?: AddEventListenerOptions,
+  target: Document | Window = document
+) {
+  const saved = useRef(listener);
+
+  // Update saved listener if it changes
+  useEffect(() => {
+    saved.current = listener;
+  }, [listener]);
+
+  useEffect(() => {
+    const handler = (e: Event) => saved.current(e);
+    target.addEventListener(type, handler, options);
+    return () => target.removeEventListener(type, handler, options);
+  }, [type, target, options]);
+}
+
+/* ===============================
+   Component: PrimaryHeader
+   =============================== */
 export default function PrimaryHeader(): JSX.Element {
   const [open, setOpen] = useState<boolean>(false);
   const [sticky, setSticky] = useState<boolean>(false);
@@ -20,59 +46,57 @@ export default function PrimaryHeader(): JSX.Element {
   const firstLinkRef = useRef<HTMLAnchorElement | null>(null);
   const location = useLocation();
 
-  // Close menu when clicking outside of it
-  useEffect(() => {
-    function handleClickOutside(e: MouseEvent) {
-      if (!open) return;
-      const target = e.target as Node;
-      if (menuRef.current && !menuRef.current.contains(target)) {
-        setOpen(false);
-      }
+  // Click outside closes menu
+  useEventListener("mousedown", (e) => {
+    if (!open) return;
+    const target = e.target as Node;
+    if (menuRef.current && !menuRef.current.contains(target)) {
+      setOpen(false);
     }
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, [open]);
+  });
 
-  // Close menu when pressing the ESC key
+  // ESC key closes menu
+  useEventListener("keydown", (e) => {
+    if ((e as KeyboardEvent).key === "Escape") setOpen(false);
+  });
+
+  // Add shadow on scroll
   useEffect(() => {
-    function handleKeyPress(e: KeyboardEvent) {
-      if (e.key === "Escape") setOpen(false);
-    }
-    document.addEventListener("keydown", handleKeyPress);
-    return () => document.removeEventListener("keydown", handleKeyPress);
+    setSticky(window.scrollY > 8);
   }, []);
 
-  // Close menu when the route changes
+  useEventListener(
+    "scroll",
+    () => setSticky(window.scrollY > 8),
+    { passive: true },
+    window
+  );
+
+  // Close menu when route changes
   useEffect(() => {
     setOpen(false);
   }, [location.pathname]);
 
+  // Disable body scroll when menu is open
   useEffect(() => {
-  const { body } = document;
-  if (open) {
-    
-    const scrollbarComp = window.innerWidth - document.documentElement.clientWidth;
-    body.style.setProperty("--scrollbar-comp", `${Math.max(0, scrollbarComp)}px`);
-    body.classList.add("body-no-scroll");
+    const { body } = document;
+    if (open) {
+      const scrollbarComp =
+        window.innerWidth - document.documentElement.clientWidth;
+      body.style.setProperty(
+        "--scrollbar-comp",
+        `${Math.max(0, scrollbarComp)}px`
+      );
+      body.classList.add("body-no-scroll");
 
-    setTimeout(() => firstLinkRef.current?.focus(), 0);
+      setTimeout(() => firstLinkRef.current?.focus(), 0);
 
-    return () => {
-      body.classList.remove("body-no-scroll");
-      body.style.removeProperty("--scrollbar-comp");
-    };
-  }
-}, [open]);
-
-  // Add a shadow to the header when scrolling
-  useEffect(() => {
-    function handleScroll() {
-      setSticky(window.scrollY > 8);
+      return () => {
+        body.classList.remove("body-no-scroll");
+        body.style.removeProperty("--scrollbar-comp");
+      };
     }
-    handleScroll();
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [open]);
 
   return (
     <header className={`site-header ${sticky ? "site-header--sticky" : ""}`}>

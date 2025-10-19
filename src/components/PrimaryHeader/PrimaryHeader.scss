@@ -193,7 +193,7 @@ body.body-no-scroll {
     }
 
     &:hover {
-      background: #4361ee4d;
+      background: var(--c-primary-hover-bg);
     }
   }
 
@@ -303,9 +303,9 @@ body.body-no-scroll {
     align-items: center;
     gap: 6px;
     padding: 0;
-    opacity: 1 !important;
-    transform: none !important;
-    pointer-events: auto !important;
+    opacity: 1;
+    transform: none;
+    pointer-events: auto;
   }
 
   .nav-link {
