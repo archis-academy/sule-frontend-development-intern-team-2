@@ -2,9 +2,9 @@ import { type JSX, type ReactNode } from "react";
 import "./SecondaryHeader.scss";
 
 // Prefer SVGs and clean filenames (no spaces)
-import LocationIcon from "@src/assets/icon-pin-alt.svg";
-import PhoneIcon from "@src/assets/phone.svg";
-import MailIcon from "@src/assets/icon-mail.svg";
+import LocationIcon from "@src/assets/icons/icon-pin-alt.svg";
+import PhoneIcon from "@src/assets/icons/phone.svg";
+import MailIcon from "@src/assets/icons/icon-mail.svg";
 
 type SecondaryHeaderProps = {
   /** Structured address instead of HTML string (to avoid XSS) */
