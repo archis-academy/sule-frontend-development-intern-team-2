@@ -15,7 +15,7 @@ function Home() {
         phone="+1 206–214–2298"
         email="support@rezilla.com"
       />
-          <Partners/>
+       <Partners/>
       <Footer />
     </>
   );
