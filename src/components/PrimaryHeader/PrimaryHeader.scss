@@ -251,6 +251,21 @@ body.body-no-scroll {
   margin: 0;
   z-index: 30;
 }
+.site-header__inner {
+  display: grid;
+  grid-template-columns: auto 1fr auto; /* left | center | right */
+  align-items: center;
+  gap: 12px;
+}
+
+.brand {
+  grid-column: 2;          /* ortadaki sütun */
+  justify-self: center;    /* yatayda merkezle */
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
 
 /* ---- Motion preference ---- */
 @media (prefers-reduced-motion: reduce) {

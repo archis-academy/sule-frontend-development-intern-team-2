@@ -1,0 +1,88 @@
+:root {
+  --secondary-header-bg: #3a0ca3;
+  --secondary-header-text: #ffffff;
+
+  --secondary-header-height: 44px;
+  --secondary-header-gap: 24px;
+  --secondary-header-icon-size: 18px;
+  --secondary-header-padding-x: 72px;
+  --secondary-header-padding-y: 8px;
+}
+
+.secondary-header {
+  background: var(--secondary-header-bg);
+  color: var(--secondary-header-text);
+}
+
+/* === Inner layout === */
+.secondary-header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: var(--secondary-header-height);
+  padding: var(--secondary-header-padding-y) var(--secondary-header-padding-x);
+  gap: var(--secondary-header-gap);
+}
+
+/* === Reusable item row === */
+.secondary-header__item {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  color: inherit;
+
+  &:hover,
+  &:focus-visible {
+    opacity: 0.95;
+  }
+}
+
+.secondary-header__item--address {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  
+}
+
+/* Right cluster (phone + mail) */
+.secondary-header__right {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--secondary-header-gap);
+ 
+}
+
+.secondary-header__icon {
+  width: var(--secondary-header-icon-size);
+  height: var(--secondary-header-icon-size);
+  flex: 0 0 var(--secondary-header-icon-size);
+  /* Ensure icons are white (use current design token). SVGs should inherit these values */
+  color: var(--secondary-header-text);
+}
+
+/* Text */
+.secondary-header__text {
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+/* === Responsive === */
+@media (max-width: 810px) {
+  .secondary-header__inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    padding-inline: 16px;
+  }
+
+  .secondary-header__right {
+    width: 100%;
+    justify-content: space-between;
+    gap: 12px;
+  }
+
+  .secondary-header__item--address {
+    width: 100%;
+  }
+}
