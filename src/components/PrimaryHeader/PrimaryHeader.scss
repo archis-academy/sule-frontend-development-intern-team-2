@@ -1,0 +1,330 @@
+/* ---- Design Tokens ---- */
+:root {
+  --header-height: 80px;
+  --container-max: 1920px;
+
+  --c-bg: #ffffff;
+  --c-text: #0f172a;
+  --c-primary: #3a0ca3;
+  --c-primary-press: #3d18cc;
+
+  /* shadow */
+  --shadow: 0 18px 40px rgba(2, 6, 23, 0.08);
+}
+
+/* ---- Utilities ---- */
+.container {
+  max-width: var(--container-max);
+  width: 100%;
+  margin-inline: auto;
+  padding-inline: 16px; /* mobile default */
+}
+
+/* ---- Header Root ---- */
+.site-header {
+  background: var(--c-bg);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  color: var(--c-text);
+
+  /* mobile: kenar boşluğu yok; büyük ekranlarda kademeli artacak */
+  margin-inline: 0;
+
+  &__inner {
+    min-height: var(--header-height);
+    display: grid;
+    grid-template-columns: auto 1fr auto; /* hamburger | brand | actions */
+    align-items: center;
+    gap: 12px;
+  }
+
+  &--sticky {
+    box-shadow: var(--shadow);
+  }
+}
+
+/* ---- Focus visibility (a11y) ---- */
+.nav-link:focus-visible,
+.header-actions__link:focus-visible,
+.btn:focus-visible,
+.nav-toggle:focus-visible {
+  outline: 2px solid var(--c-primary);
+  outline-offset: 2px;
+  border-radius: 12px;
+}
+
+/* ---- Brand ---- */
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  color: inherit;
+  justify-self: center;
+
+  &__badge {
+    width: 36px;
+    height: 36px;
+    display: grid;
+    place-items: center;
+    border-radius: 50px;
+    background: var(--c-primary);
+
+    img {
+      width: 22px;
+      height: 22px;
+      display: block;
+    }
+  }
+
+  &__text {
+    font-size: 18px; /* mobile default */
+    font-weight: 700;
+    letter-spacing: 0.2px;
+  }
+}
+
+/* ---- Hamburger ---- */
+.nav-toggle {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  border: 1px solid var(--c-line);
+  background: var(--c-bg);
+  display: inline-grid;
+  place-content: center;
+  gap: 4px;
+  cursor: pointer;
+
+  .nav-toggle__bar {
+    width: 18px;
+    height: 2px;
+    background: var(--c-text);
+    display: block;
+    border-radius: 2px;
+  }
+}
+
+/* ---- Nav list + links (mobile modal) ---- */
+.nav-list {
+  position: fixed;
+  inset: calc(var(--header-height)) 0 auto 0; /* below header */
+  background: var(--c-bg);
+  border-bottom: 1px solid var(--c-line);
+  display: grid;
+  gap: 6px;
+  padding: 12px 16px;
+  transform: translateY(-12px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  z-index: 40;
+
+  &.is-open {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+
+  li {
+    list-style: none;
+  }
+}
+
+.nav-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 14px; /* mobile hit area daha büyük */
+  border-radius: 50px;
+  color: var(--c-text);
+  text-decoration: none;
+  font-weight: 500;
+
+  &:hover {
+    background: #4361ee4d;
+  }
+}
+
+/* ---- Actions ---- */
+.header-actions {
+  display: none;
+
+  &__link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 12px;
+    border-radius: 50px;
+    color: var(--c-text);
+    text-decoration: none;
+
+    img {
+      width: 18px;
+      height: 18px;
+      display: block;
+    }
+
+    &:hover {
+      background: #4361ee4d;
+    }
+  }
+
+  &__cta {
+    margin-left: 8px;
+  }
+
+  &--desktop {
+    justify-self: end;
+  }
+}
+
+/* ---- Buttons ---- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  border-radius: 50px;
+  border: 1px solid var(--c-line);
+  text-decoration: none;
+  font-weight: 600;
+
+  &--primary {
+    background: var(--c-primary);
+    border-color: transparent;
+    color: #fff;
+
+    &:hover {
+      background: var(--c-primary-press);
+    }
+  }
+}
+
+/* ---- Actions in nav on mobile ---- */
+.nav-actions {
+  display: grid;
+  gap: 24px;
+  padding-top: 8px;
+
+  .header-actions__link,
+  .header-actions__cta {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* ---- Mobile overlay (menu open) ---- */
+.nav-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(2, 6, 23, 0.45);
+  border: 0;
+  padding: 0;
+  margin: 0;
+  z-index: 30;
+}
+
+/* ---- Motion preference ---- */
+@media (prefers-reduced-motion: reduce) {
+  .nav-list {
+    transition: none;
+  }
+}
+
+/* ===========================
+   ≥ 640px (sm) 
+   =========================== */
+@media (min-width: 640px) {
+  .container {
+    padding-inline: 24px;
+  }
+
+  .brand__text {
+    font-size: 19px;
+  }
+}
+
+/* ===========================
+   ≥ 992px (lg) 
+   =========================== */
+@media (min-width: 992px) {
+  .site-header__inner {
+    grid-template-columns: 1fr auto 1fr; /* nav | brand | actions */
+  }
+
+  .site-header {
+    margin-inline: 120px;
+  }
+
+  .nav-toggle {
+    display: none;
+  }
+
+  .primary-nav {
+    justify-self: start;
+  }
+
+  .nav-list {
+    position: static;
+    inset: auto;
+    background: transparent;
+    border: 0;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 0;
+    opacity: 1 !important;
+    transform: none !important;
+    pointer-events: auto !important;
+  }
+
+  .nav-link {
+    padding: 10px 12px;
+  }
+
+  .header-actions {
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .nav-actions {
+    display: none;
+  }
+}
+
+/* ===========================
+   ≥ 1280px (xl)
+   =========================== */
+@media (min-width: 1280px) {
+  .brand__text {
+    font-size: 20px;
+  }
+
+  .nav-link {
+    padding: 10px 14px;
+  }
+
+  .btn {
+    padding: 12px 16px;
+  }
+
+  .site-header {
+    margin-inline: 160px;
+  }
+}
+
+/* ===========================
+   ≥ 1536px (2xl) 
+   =========================== */
+@media (min-width: 1536px) {
+  .site-header {
+    margin-left: 240px;
+    margin-right: 240px;
+  }
+
+  .brand__text {
+    font-size: 22px;
+  }
+}
