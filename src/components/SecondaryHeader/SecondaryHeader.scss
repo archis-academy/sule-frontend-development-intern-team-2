@@ -66,8 +66,64 @@
   text-decoration: none;
 }
 
+/* Base adjustments (keeps your current desktop design) */
+.secondary-header {
+  background: #3a0ca3;
+  color: #fff;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.secondary-header__inner {
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding-block: 8px;
+}
+
+.secondary-header__item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  color: inherit;
+}
+
+.secondary-header__icon {
+  width: 18px;
+  height: 18px;
+  flex: 0 0 auto;
+}
+
+.secondary-header__right {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+/* 🔽 Responsive: stack on small screens instead of hiding */
 @media (max-width: 810px) {
-  .secondary-header {
-    display: none;
+  .secondary-header__inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .secondary-header__right {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .secondary-header__item--address {
+    width: 100%;
+  }
+
+  .secondary-header__text {
+    font-size: 14px;
+    line-height: 1.4;
   }
 }

@@ -1,21 +1,52 @@
-import { type JSX } from "react";
+import { type JSX, type ReactNode } from "react";
 import "./SecondaryHeader.scss";
 
-/* 🎨 Icon importları */
-import LocationIcon from "@src/assets/icon _pin alt_.png";
-import PhoneIcon from "@src/assets/phone.png";
-import MailIcon from "@src/assets/icon _mail_.png";
+// Prefer SVGs and clean filenames (no spaces)
+import LocationIcon from "@src/assets/icon-pin-alt.svg";
+import PhoneIcon from "@src/assets/phone.svg";
+import MailIcon from "@src/assets/icon-mail.svg";
 
 type SecondaryHeaderProps = {
-  address?: string;
+  /** Structured address instead of HTML string (to avoid XSS) */
+  address?: ReactNode | string;
   phone?: string;
   email?: string;
   className?: string;
 };
 
+// Simple helper for joining classes (replace with classnames if available)
+const cx = (...parts: Array<string | false | undefined>) =>
+  parts.filter(Boolean).join(" ");
+
+/** Clean tel link generator */
 function telHref(phone: string): string {
   const digits = phone.replace(/[^\d+]/g, "");
   return `tel:${digits}`;
+}
+
+/** Converts "<strong>...</strong>" in a string into real <strong> elements */
+function renderAddressNode(address: ReactNode): ReactNode {
+  if (typeof address !== "string") return address;
+
+  const parts: ReactNode[] = [];
+  const regex = /<strong>(.*?)<\/strong>/gi;
+  let lastIndex = 0;
+  let match: RegExpExecArray | null;
+  let key = 0;
+
+  while ((match = regex.exec(address)) !== null) {
+    if (match.index > lastIndex) {
+      parts.push(address.slice(lastIndex, match.index));
+    }
+    parts.push(<strong key={`addr-strong-${key++}`}>{match[1]}</strong>);
+    lastIndex = regex.lastIndex;
+  }
+
+  if (lastIndex < address.length) {
+    parts.push(address.slice(lastIndex));
+  }
+
+  return parts;
 }
 
 export default function SecondaryHeader({
@@ -24,12 +55,12 @@ export default function SecondaryHeader({
   email = "support@rezilla.com",
   className = "",
 }: SecondaryHeaderProps): JSX.Element {
-  const rootClass = ["secondary-header", className].filter(Boolean).join(" ");
+  const rootClass = cx("secondary-header", className);
 
   return (
     <div className={rootClass} role="contentinfo" aria-label="Contact bar">
       <div className="secondary-header__inner container">
-        {/* Sol: Adres */}
+        {/* === Left: Office address === */}
         <address
           className="secondary-header__item secondary-header__item--address"
           title="Office address"
@@ -39,13 +70,12 @@ export default function SecondaryHeader({
             alt="Location"
             className="secondary-header__icon"
           />
-          <span
-            className="secondary-header__text"
-            dangerouslySetInnerHTML={{ __html: address }}
-          />
+          <span className="secondary-header__text">
+            {renderAddressNode(address)}
+          </span>
         </address>
 
-        {/* Sağ: Telefon + E-posta */}
+        {/* === Right: Phone & Email === */}
         <div className="secondary-header__right">
           <a
             className="secondary-header__item"
