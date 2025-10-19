@@ -14,83 +14,77 @@
   color: var(--secondary-header-text);
 }
 
+/* === Inner layout === */
 .secondary-header__inner {
   display: flex;
   align-items: center;
   justify-content: space-between;
   min-height: var(--secondary-header-height);
+  padding: var(--secondary-header-padding-y) var(--secondary-header-padding-x);
   gap: var(--secondary-header-gap);
-  margin-left: var(--secondary-header-padding-x);
-  margin-right: var(--secondary-header-padding-x);
-  padding-block: var(--secondary-header-padding-y);
 }
 
+/* === Reusable item row === */
 .secondary-header__item {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   gap: 10px;
-  text-decoration: none;
+  text-decoration: none; /* <a> için */
   color: inherit;
+
+  &:hover,
+  &:focus-visible {
+    opacity: 0.95;
+  }
 }
 
+/* Address bloğunun satıra sığması */
 .secondary-header__item--address {
-  flex-shrink: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-.secondary-header__item--address strong {
-  font-weight: 700;
-  opacity: 1;
-}
-
-.secondary-header__inner {
-  min-height: 44px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 24px;
-  padding-block: 8px;
-}
-.secondary-header__item {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  text-decoration: none;
-  color: inherit;
-}
-.secondary-header__icon {
-  width: 18px;
-  height: 18px;
-  flex: 0 0 auto;
-}
-
+/* Right cluster (phone + mail) */
 .secondary-header__right {
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  gap: 24px;
+  gap: var(--secondary-header-gap);
 }
 
-/* 🔽 Responsive: stack on small screens instead of hiding */
+/* Icons via SVGR (fill/stroke CSS’ten yönetilebilir) */
+.secondary-header__icon {
+  width: var(--secondary-header-icon-size);
+  height: var(--secondary-header-icon-size);
+  flex: 0 0 var(--secondary-header-icon-size);
+
+  /* Iconları mevcut metin rengine bağlamak istersen: */
+  fill: currentColor;
+  stroke: currentColor;
+}
+
+/* Text */
+.secondary-header__text {
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+/* === Responsive === */
 @media (max-width: 810px) {
   .secondary-header__inner {
     flex-direction: column;
     align-items: flex-start;
-    gap: 12px;
+    gap: 8px;
+    padding-inline: 16px; /* mobile’de daha dar */
   }
 
   .secondary-header__right {
     width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 8px;
+    justify-content: space-between;
+    gap: 12px;
   }
 
   .secondary-header__item--address {
     width: 100%;
-  }
-
-  .secondary-header__text {
-    font-size: 14px;
-    line-height: 1.4;
   }
 }
