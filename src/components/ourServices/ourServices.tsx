@@ -1,8 +1,11 @@
+import React from "react";
 import OurServicesCard, { type ServiceItem } from "./ourServicesCard";
 import styles from "./ourServices.module.scss";
+
 import house from "./../../assets/icons/house.svg";
-import search from "./../../assets/icons/search.png";
+import search from "./../../assets/icons/search.svg"; 
 import bed from "./../../assets/icons/bed.svg";
+
 const services: ServiceItem[] = [
   {
     id: 1,
@@ -44,3 +47,4 @@ const OurServices: React.FC = () => {
 };
 
 export default OurServices;
+

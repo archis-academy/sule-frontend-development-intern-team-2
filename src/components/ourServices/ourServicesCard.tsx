@@ -1,8 +1,9 @@
-import style from './ourServicesCard.module.scss';  
+import React from "react";
+import style from "./ourServicesCard.module.scss";
 
 export interface ServiceItem {
   id: number;
-  image: string;
+  image: string; 
   title: string;
   description: string;
 }
@@ -15,15 +16,15 @@ const OurServicesCard: React.FC<OurServicesCardProps> = ({ service }) => {
   return (
     <div className={style.servicesCard}>
       <div className={style.iconContainer}>
-
-        <img src={service.image} alt="" className={style.ourServicesIcon}/>
+        <img src={service.image} alt={service.title} className={style.ourServicesIcon} />
       </div>
       <div className={style.cardContent}>
-      <h3 className={style.cardTitle}>{service.title}</h3>
-      <p className={style.cardDescription}>{service.description}</p>
+        <h3 className={style.cardTitle}>{service.title}</h3>
+        <p className={style.cardDescription}>{service.description}</p>
       </div>
     </div>
   );
 };
 
 export default OurServicesCard;
+
