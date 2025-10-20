@@ -1,4 +1,5 @@
 import Footer from "@/components/Footer/Footer";
+import About from "@/sections/About/About";
 import SecondaryHeader from "@components/SecondaryHeader/SecondaryHeader";
 
 function Home() {
@@ -13,6 +14,7 @@ function Home() {
         phone="+1 206–214–2298"
         email="support@rezilla.com"
       />
+      <About />
       <Footer />
     </>
   );
