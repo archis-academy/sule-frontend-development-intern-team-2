@@ -13,8 +13,14 @@
 
   --c-primary-rgb: 58, 12, 163;
   --c-primary-hover-bg: rgba(var(--c-primary-rgb), 0.3);
+  --header-height: 80px;
 }
-
+section {
+  scroll-margin-top: var(--header-height);
+}
+html {
+  scroll-behavior: smooth;
+}
 /* scroll-lock (JS: body.classList.add('body-no-scroll')) */
 body.body-no-scroll {
   overflow: hidden;
@@ -179,27 +185,29 @@ body.body-no-scroll {
   text-decoration: none;
   font-weight: 500;
   line-height: 1;
+  position: relative; 
 
   &:hover {
     background: var(--c-primary-hover-bg);
   }
+}
 
-  /* React Router NavLink active */
-  &.is-active {
-    color: var(--c-primary);
-    position: relative;
 
-    &::after {
-      content: "";
-      position: absolute;
-      left: 0;
-      right: 0;
-      bottom: -6px;
-      height: 2px;
-      background: var(--c-primary);
-      border-radius: 1px;
-    }
-  }
+.nav-link.is-active,
+.nav-link[aria-current="page"] {
+  color: var(--c-primary);
+}
+
+.nav-link.is-active::after,
+.nav-link[aria-current="page"]::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -6px;
+  height: 2px;
+  background: var(--c-primary);
+  border-radius: 1px;
 }
 
 /* ---- Actions ---- */
@@ -342,7 +350,6 @@ body.body-no-scroll {
   .site-header__inner .nav-toggle {
     display: none;
   }
-
 
   .nav-list {
     position: static;

@@ -1,4 +1,5 @@
 import Footer from "@/components/Footer/Footer";
+import About from "@/sections/About/About";
 import SecondaryHeader from "@components/SecondaryHeader/SecondaryHeader";
 import PrimaryHeader from "@/components/PrimaryHeader/PrimaryHeader";
 
@@ -15,9 +16,9 @@ function Home() {
         email="support@rezilla.com"
       />
       <PrimaryHeader />
+      <About />
       <Footer />
     </>
   );
 }
-
 export default Home;

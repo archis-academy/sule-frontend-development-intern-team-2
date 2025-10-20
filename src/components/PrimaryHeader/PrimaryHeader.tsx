@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState, type JSX } from "react";
-import { NavLink, useLocation } from "react-router-dom";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import cn from "classnames";
 import "./PrimaryHeader.scss";
 
@@ -7,11 +7,11 @@ import HouseIcon from "../assets/14-House.svg?react";
 import UserIcon from "../assets/human.svg?react";
 
 const NAV_LINKS = [
-  { to: "/", label: "Home" },
-  { to: "/about", label: "About" },
-  { to: "/listings", label: "Listings" },
-  { to: "/services", label: "Services" },
-  { to: "/blog", label: "Blog" },
+  { to: "#home", label: "Home" },
+  { to: "#about", label: "About" },
+  { to: "#listings", label: "Listings" },
+  { to: "#services", label: "Services" },
+  { to: "#blog", label: "Blog" },
 ];
 
 /* ===============================
@@ -37,14 +37,23 @@ function useEventListener(
 }
 
 /* ===============================
-   Component: PrimaryHeader
+   Yardımcı: sayfa içi kaydırma
    =============================== */
+function scrollToHash(hash: string) {
+  if (!hash.startsWith("#")) return;
+  const id = hash.slice(1);
+  const el = document.getElementById(id);
+  if (!el) return;
+  el.scrollIntoView({ behavior: "smooth", block: "start" });
+}
+
 export default function PrimaryHeader(): JSX.Element {
   const [open, setOpen] = useState(false);
   const [sticky, setSticky] = useState(false);
   const menuRef = useRef<HTMLUListElement | null>(null);
   const firstLinkRef = useRef<HTMLAnchorElement | null>(null);
   const location = useLocation();
+  const navigate = useNavigate();
 
   // Click outside closes menu
   useEventListener("mousedown", (e) => {
@@ -60,7 +69,7 @@ export default function PrimaryHeader(): JSX.Element {
     if ((e as KeyboardEvent).key === "Escape") setOpen(false);
   });
 
-  // Sticky: scroll handler + initial check on mount
+  // Sticky header
   const handleScroll = useCallback(() => {
     setSticky(window.scrollY > 8);
   }, []);
@@ -69,23 +78,23 @@ export default function PrimaryHeader(): JSX.Element {
   }, [handleScroll]);
   useEventListener("scroll", handleScroll, { passive: true }, window);
 
-  // Close menu when route changes
+  // Close menu on route/hash change
   useEffect(() => {
     setOpen(false);
-  }, [location.pathname]);
+  }, [location.pathname, location.hash]);
 
-  // Disable body scroll when menu is open + focus first item
+  // Lock body scroll when menu open
   useEffect(() => {
     const { body } = document;
     if (open) {
       const scrollbarComp =
         window.innerWidth - document.documentElement.clientWidth;
-      body.style.setProperty("--scrollbar-comp", `${Math.max(0, scrollbarComp)}px`);
+      body.style.setProperty(
+        "--scrollbar-comp",
+        `${Math.max(0, scrollbarComp)}px`
+      );
       body.classList.add("body-no-scroll");
-
-      // Render sonrasında odak için kısa gecikme (gerekirse flushSync'e geçilebilir)
       const id = setTimeout(() => firstLinkRef.current?.focus(), 0);
-
       return () => {
         clearTimeout(id);
         body.classList.remove("body-no-scroll");
@@ -94,10 +103,31 @@ export default function PrimaryHeader(): JSX.Element {
     }
   }, [open]);
 
+  // One-page link click handler
+  const onSectionLinkClick = async (
+    e: React.MouseEvent<HTMLAnchorElement, MouseEvent>,
+    hash: string
+  ) => {
+    e.preventDefault();
+
+    if (location.pathname !== "/") {
+  
+      await navigate("/" + hash, { replace: false });
+      requestAnimationFrame(() => {
+        window.location.hash = hash; 
+        scrollToHash(hash);
+      });
+    } else {
+     
+      window.location.hash = hash; 
+      scrollToHash(hash);
+    }
+
+    setOpen(false);
+  };
+
   return (
-    <header
-      className={cn("site-header", { "site-header--sticky": sticky })}
-    >
+    <header className={cn("site-header", { "site-header--sticky": sticky })}>
       <div className="container site-header__inner">
         {/* LEFT: Hamburger + Navigation */}
         <button
@@ -114,7 +144,7 @@ export default function PrimaryHeader(): JSX.Element {
         </button>
 
         <nav className="primary-nav" aria-label="Primary">
-          {/* On mobile, the nav acts as a modal dialog when opened */}
+     
           <ul
             id="primary-nav"
             ref={menuRef}
@@ -122,21 +152,27 @@ export default function PrimaryHeader(): JSX.Element {
             role={open ? "dialog" : undefined}
             aria-modal={open ? "true" : undefined}
           >
-            {NAV_LINKS.map((item, idx) => (
-              <li key={item.to}>
-                <NavLink
-                  to={item.to}
-                  className={({ isActive }) =>
-                    cn("nav-link", { "is-active": isActive })
-                  }
-                  ref={idx === 0 ? firstLinkRef : undefined}
-                >
-                  {item.label}
-                </NavLink>
-              </li>
-            ))}
+            {NAV_LINKS.map((item, idx) => {
+              const isActive =
+                location.pathname === "/" &&
+                (location.hash || "#home") === item.to;
 
-            {/* Mobile: user actions inside the hamburger menu */}
+              return (
+                <li key={item.to}>
+                  <a
+                    href={item.to}
+                    className={cn("nav-link", { "is-active": isActive })}
+                    aria-current={isActive ? "page" : undefined}
+                    ref={idx === 0 ? firstLinkRef : undefined}
+                    onClick={(e) => onSectionLinkClick(e, item.to)}
+                  >
+                    {item.label}
+                  </a>
+                </li>
+              );
+            })}
+
+            {/* Mobile: user actions hamburger içinde */}
             <li className="nav-actions">
               <NavLink to="/login" className="header-actions__link">
                 <UserIcon aria-hidden="true" />
