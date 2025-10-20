@@ -4,9 +4,13 @@ import SecondaryHeader from "@components/SecondaryHeader/SecondaryHeader";
 import PrimaryHeader from "@/components/PrimaryHeader/PrimaryHeader";
 import Listings from "@/sections/Listings/Listings";
 
+// Home.tsx
 function Home() {
   return (
     <>
+      {/* Home anchor */}
+      <div id="home" />
+
       <SecondaryHeader
         address={
           <>
@@ -17,9 +21,15 @@ function Home() {
         email="support@rezilla.com"
       />
       <PrimaryHeader />
-      <About />
-      <Listings />  
-      <Footer /> 
+      <section id="about">
+        <About />
+      </section>
+      <section id="listings">
+        <Listings />
+      </section>
+      <section id="footer">
+        <Footer />
+      </section>
     </>
   );
 }
