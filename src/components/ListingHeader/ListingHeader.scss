@@ -1,4 +1,3 @@
-/* ListingHeader.scss */
 .listingHeader {
   --gap: 24px;
   --pill-gap: 10px;
@@ -10,14 +9,14 @@
   --pill-button-border: #3a0ca3;
   --header-text-color: #4361ee;
 
-  display: grid;
-  grid-template-columns: 1fr auto;
+  display: flex;
+  justify-content: space-between;
   align-items: center;
-  gap: var(--gap);
-  padding-block: clamp(16px, 2.2vw, 28px);
+  flex-wrap: wrap;
+  gap: 20px;
 
   &__content {
-    min-width: 0;
+    flex: 1;
     margin-left: 72px;
 
     .listingHeader__sub {
@@ -48,17 +47,24 @@
   }
 
   &__filters {
-    display: inline-flex;
-    align-items: center;
-    gap: var(--pill-gap);
-    flex-wrap: wrap;
-    margin-right: 72px;
+    border: none;
+    border-radius: 6px;
+    color: var(--pill-text);
+    font-weight: 500;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+
+    display: flex;
+    gap: 10px;
   }
+
   &__filters button {
     border: 1px solid var(--pill-button-border);
     width: 80px;
     height: 50px;
   }
+
   &__filters button:hover {
     gap: calc(var(--pill-gap) + 2px);
     background-color: var(--pill-bg-hover);
@@ -89,6 +95,13 @@
     outline: 2px solid #94a3b8;
     outline-offset: 2px;
   }
+
+  &.is-active {
+    background-color: #3a0ca3;
+    color: #fff;
+    font-weight: 600;
+    box-shadow: 0 0 0 2px #3a0ca3 inset;
+  }
 }
 
 /* Responsive: stack on small screens without breaking layout */
@@ -100,11 +113,13 @@
     &__filters {
       justify-content: center;
     }
+
     &__content {
       margin-right: 30px;
     }
   }
 }
+
 @media (max-width: 480px) {
   .listingHeader {
     grid-template-columns: 1fr;

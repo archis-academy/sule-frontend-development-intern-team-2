@@ -1,4 +1,4 @@
-import { type JSX, memo } from "react";
+import { type JSX, memo, useState } from "react";
 import "./ListingHeader.scss";
 
 export type FilterKey = "all" | "sell" | "rent";
@@ -7,25 +7,37 @@ export type ListingHeaderProps = {
   subheading?: string;
   heading?: string;
   description?: string;
-  activeFilter?: FilterKey;
   onFilterChange?: (key: FilterKey) => void;
 };
+
+
+const filters: Array<{ key: FilterKey; label: string }> = [
+  { key: "all", label: "All" },
+  { key: "sell", label: "Sell" },
+  { key: "rent", label: "Rent" },
+];
 
 function ListingHeaderBase({
   subheading = "CHECKOUT OUR NEW",
   heading = "Latest Listed Properties",
   description = "Donec porttitor euismod dignissim. Nullam a lacinia ipsum, nec dignissim purus.",
-  activeFilter = "sell",
   onFilterChange = () => {},
 }: ListingHeaderProps): JSX.Element {
-  const filters: Array<{ key: FilterKey; label: string }> = [
-    { key: "all", label: "All" },
-    { key: "sell", label: "Sell" },
-    { key: "rent", label: "Rent" },
-  ];
+  
+  const [activeFilter, setActiveFilter] = useState<FilterKey>("sell");
+
+  const handleFilterClick = (key: FilterKey) => {
+    setActiveFilter(key);
+    onFilterChange(key);
+  };
 
   return (
-    <header className="listingHeader" aria-labelledby="listing-header-title">
+   
+    <header
+      id="home"
+      className="listingHeader"
+      aria-labelledby="listing-header-title"
+    >
       {/* Left: text block */}
       <div className="listingHeader__content">
         <p className="listingHeader__sub">{subheading}</p>
@@ -49,7 +61,7 @@ function ListingHeaderBase({
               type="button"
               className={`filterBtn${isActive ? " is-active" : ""}`}
               aria-pressed={isActive}
-              onClick={() => onFilterChange(f.key)}
+              onClick={() => handleFilterClick(f.key)}
             >
               {f.label}
             </button>

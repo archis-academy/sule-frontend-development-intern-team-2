@@ -4,7 +4,7 @@ import SecondaryHeader from "@components/SecondaryHeader/SecondaryHeader";
 import PrimaryHeader from "@/components/PrimaryHeader/PrimaryHeader";
 import Listings from "@/sections/Listings/Listings";
 
-// Home.tsx
+
 function Home() {
   return (
     <>
