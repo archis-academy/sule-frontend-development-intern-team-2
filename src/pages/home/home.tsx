@@ -1,6 +1,7 @@
 import Footer from "@/components/Footer/Footer";
 import SecondaryHeader from "@components/SecondaryHeader/SecondaryHeader";
 import Partners from "@/components/partnersSection/partners";
+import OurServices from "@/components/ourServices/ourServices";
 
 
 function Home() {
@@ -16,6 +17,7 @@ function Home() {
         email="support@rezilla.com"
       />
        <Partners/>
+       <OurServices/>
       <Footer />
     </>
   );
