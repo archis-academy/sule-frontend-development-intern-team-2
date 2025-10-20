@@ -31,7 +31,7 @@ function FeaturePill({ icon, title, desc }: FeaturePillProps): JSX.Element {
 
 export default function About(): JSX.Element {
   return (
-    <section className={styles.about} aria-labelledby="about-title">
+    <section className={styles.about} aria-labelledby="about-title" id="about">
       <div className={styles["about__grid"]}>
         <div className={styles["about__copy"]}>
           <p className={styles["about__eyebrow"]}>WHO ARE WE</p>

@@ -1,7 +1,8 @@
 import Footer from "@/components/Footer/Footer";
 import About from "@/sections/About/About";
 import SecondaryHeader from "@components/SecondaryHeader/SecondaryHeader";
-import ListingHeader from "@components/ListingHeader/ListingHeader";
+import PrimaryHeader from "@/components/PrimaryHeader/PrimaryHeader";
+import Listings from "@/sections/Listings/Listings";
 
 function Home() {
   return (
@@ -15,11 +16,11 @@ function Home() {
         phone="+1 206–214–2298"
         email="support@rezilla.com"
       />
+      <PrimaryHeader />
       <About />
-      <ListingHeader />
-      <Footer />
+      <Listings />  
+      <Footer /> 
     </>
   );
 }
-
 export default Home;
