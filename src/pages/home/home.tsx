@@ -2,7 +2,7 @@ import Footer from "@/components/Footer/Footer";
 import About from "@/sections/About/About";
 import SecondaryHeader from "@components/SecondaryHeader/SecondaryHeader";
 import PrimaryHeader from "@/components/PrimaryHeader/PrimaryHeader";
-
+import CtaBanner from "@components/ctaBanner/ctaBanner";
 function Home() {
   return (
     <>
@@ -17,6 +17,7 @@ function Home() {
       />
       <PrimaryHeader />
       <About />
+      <CtaBanner />
       <Footer />
     </>
   );
