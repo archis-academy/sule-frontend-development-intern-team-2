@@ -1,0 +1,112 @@
+@use "@/styles/variables" as vars;
+@use "@/styles/functions" as fn;
+
+/* Root wrapper */
+.listingHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: fn.pxToRem(vars.$gapXl);
+  max-width: fn.pxToRem(vars.$containerMax);
+  width: 100%;
+  margin-inline: auto;
+  padding-inline: fn.pxToRem(16);
+}
+
+/* Left text block */
+.listingHeaderContent {
+  flex: 1;
+  min-width: 0;
+}
+
+.listingHeaderSub {
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: fn.pxToRem(vars.$subSize);
+  color: #4361ee;
+  margin: 0 0 fn.pxToRem(6);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.listingHeaderTitle {
+  font-size: clamp(fn.pxToRem(28), 3.6vw, fn.pxToRem(vars.$titleSizeMax));
+  line-height: 1.15;
+  color: vars.$colorText;
+  margin: 0 0 fn.pxToRem(vars.$gapSm);
+}
+
+.listingHeaderDesc {
+  font-size: fn.pxToRem(vars.$descSize);
+  color: vars.$colorMuted;
+  margin: 0;
+  max-width: 60ch;
+}
+
+/* Right: filter group */
+.listingHeaderFilters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: fn.pxToRem(20); /* <-- butonlar arası boşluk */
+  justify-content: flex-end;
+}
+
+/* Buttons */
+.filterBtn {
+  appearance: none;
+  border: 1px solid vars.$brandPrimary;
+  background-color: transparent;
+  color: vars.$colorText;
+  padding: fn.pxToRem(12) fn.pxToRem(20);
+  border-radius: fn.pxToRem(vars.$pillRadius);
+  font-weight: 600;
+  line-height: 1;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  min-width: fn.pxToRem(80);
+  text-align: center;
+
+  &:hover {
+    background-color: rgba(vars.$brandPrimary, 0.08);
+  }
+
+  &:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 fn.pxToRem(3) rgba(vars.$brandPrimary, 0.25);
+  }
+}
+
+/* Aktif durum — CSS Modules için ayrı class */
+.isActive {
+  background-color: vars.$brandPrimary;
+  color: vars.$brandPrimaryText;
+  border-color: vars.$brandPrimary;
+}
+
+/* =========================
+   Responsive (variables.scss breakpoints)
+   ========================= */
+@media (max-width: vars.$tablet-m) {
+  .listingHeader {
+    flex-direction: column;
+    align-items: stretch;
+    gap: fn.pxToRem(vars.$gapLg);
+  }
+
+  .listingHeaderFilters {
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: vars.$mobile-l) {
+  .listingHeaderTitle {
+    font-size: clamp(fn.pxToRem(22), 5vw, fn.pxToRem(28));
+  }
+
+  .filterBtn {
+    padding: fn.pxToRem(10) fn.pxToRem(16);
+    min-width: auto;
+  }
+}

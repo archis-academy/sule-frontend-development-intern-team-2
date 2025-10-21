@@ -1,17 +1,8 @@
 import { type JSX, memo, useState } from "react";
-import "./ListingHeader.scss";
+import styles from "./ListingHeader.module.scss"; 
+import { type FilterKey, type ListingHeaderProps } from "@/types/listing";
 
-export type FilterKey = "all" | "sell" | "rent";
-
-export type ListingHeaderProps = {
-  subheading?: string;
-  heading?: string;
-  description?: string;
-  onFilterChange?: (key: FilterKey) => void;
-};
-
-
-const filters: Array<{ key: FilterKey; label: string }> = [
+const FILTER_OPTIONS: Array<{ key: FilterKey; label: string }> = [
   { key: "all", label: "All" },
   { key: "sell", label: "Sell" },
   { key: "rent", label: "Rent" },
@@ -21,49 +12,48 @@ function ListingHeaderBase({
   subheading = "CHECKOUT OUR NEW",
   heading = "Latest Listed Properties",
   description = "Donec porttitor euismod dignissim. Nullam a lacinia ipsum, nec dignissim purus.",
-  onFilterChange = () => {},
+  onFilterChange,
 }: ListingHeaderProps): JSX.Element {
-  
   const [activeFilter, setActiveFilter] = useState<FilterKey>("sell");
 
-  const handleFilterClick = (key: FilterKey) => {
+  const handleFilterClick = (key: FilterKey): void => {
     setActiveFilter(key);
-    onFilterChange(key);
+    if (onFilterChange) onFilterChange(key);
   };
 
   return (
-   
     <header
-      id="home"
-      className="listingHeader"
+      className={styles.listingHeader}
       aria-labelledby="listing-header-title"
     >
-      {/* Left: text block */}
-      <div className="listingHeader__content">
-        <p className="listingHeader__sub">{subheading}</p>
-        <h2 className="listingHeader__title" id="listing-header-title">
+      {/* Left side: text content */}
+      <div className={styles.listingHeaderContent}>
+        <p className={styles.listingHeaderSub}>{subheading}</p>
+        <h2 className={styles.listingHeaderTitle} id="listing-header-title">
           {heading}
         </h2>
-        <p className="listingHeader__desc">{description}</p>
+        <p className={styles.listingHeaderDesc}>{description}</p>
       </div>
 
-      {/* Right: filters */}
+      {/* Right side: filter buttons */}
       <div
-        className="listingHeader__filters"
+        className={styles.listingHeaderFilters}
         role="group"
         aria-label="Filter listings"
       >
-        {filters.map((f) => {
-          const isActive = activeFilter === f.key;
+        {FILTER_OPTIONS.map(({ key, label }) => {
+          const isActive = activeFilter === key;
           return (
             <button
-              key={f.key}
+              key={key}
               type="button"
-              className={`filterBtn${isActive ? " is-active" : ""}`}
+              className={`${styles.filterBtn} ${
+                isActive ? styles.isActive : ""
+              }`}
               aria-pressed={isActive}
-              onClick={() => handleFilterClick(f.key)}
+              onClick={() => handleFilterClick(key)}
             >
-              {f.label}
+              {label}
             </button>
           );
         })}
@@ -72,5 +62,4 @@ function ListingHeaderBase({
   );
 }
 
-const ListingHeader = memo(ListingHeaderBase);
-export default ListingHeader;
+export default memo(ListingHeaderBase);

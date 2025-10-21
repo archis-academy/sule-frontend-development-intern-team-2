@@ -38,3 +38,34 @@ $tablet-s: pxToRem(640);
 $mobile-l: pxToRem(576);
 $mobile-m: pxTotRem(480);
 $mobile-s: pxToRem(320);
+
+// Colors
+$colorText: #0f172a;
+$colorMuted: #6b7280;
+$colorBorder: #e5e7eb;
+$brandPrimary: #3a0ca3;
+$brandPrimaryText: #ffffff;
+
+// Shadows
+$shadowCard: 0 10px 30px rgba(23, 23, 23, 0.08);
+
+// Radii (px değerleri sayı olarak saklanır; kullanımda pxToRem uygulanır)
+$radiusXl: 22;
+$pillRadius: 999;
+
+// Spacing (raw number / px)
+$gapXs: 8;
+$gapSm: 12;
+$gapMd: 20;
+$gapLg: 24;
+$gapXl: 40;
+
+// Typography (raw / px)
+$titleSizeMin: 20;
+$titleSizeMax: 42;
+$subSize: 12;
+$descSize: 16;
+
+// Layout (raw / px)
+$containerMax: 1200;
+
