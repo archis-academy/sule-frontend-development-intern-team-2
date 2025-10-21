@@ -3,8 +3,8 @@ import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import cn from "classnames";
 import "./PrimaryHeader.scss";
 
-import HouseIcon from "../assets/14-House.svg?react";
-import UserIcon from "../assets/human.svg?react";
+import HouseIcon from "@/assets/icons/14-House.svg?react";
+import UserIcon from "@/assets/icons/user.svg?react";
 
 const NAV_LINKS = [
   { to: "#home", label: "Home" },

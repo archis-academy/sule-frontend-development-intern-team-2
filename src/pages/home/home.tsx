@@ -2,6 +2,7 @@ import Footer from "@/components/Footer/Footer";
 import About from "@/sections/About/About";
 import SecondaryHeader from "@components/SecondaryHeader/SecondaryHeader";
 import PrimaryHeader from "@/components/PrimaryHeader/PrimaryHeader";
+import Listings from "@/sections/Listings/Listings";
 
 function Home() {
   return (
@@ -17,6 +18,7 @@ function Home() {
       />
       <PrimaryHeader />
       <About />
+      <Listings />
       <Footer />
     </>
   );

@@ -1,0 +1,244 @@
+/* =========================
+   Design Tokens
+   ========================= */
+:root {
+  --radius-xl: 22px;
+  --shadow-card: 0 10px 30px rgba(23, 23, 23, 0.08);
+
+  --color-text: #0f172a;
+  --color-muted: #6b7280;
+  --color-border: #e5e7eb;
+
+  --ease-smooth: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* =========================
+   Full Bleed Utility 
+   ========================= */
+.full-bleed {
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  padding-left: 0 ;
+  padding-right: 0 ;
+}
+
+/* =========================
+   Grid Container 
+   ========================= */
+.listings__grid {
+  --card-w: 340px;
+  --gap: 50px;
+
+  display: grid;
+  grid-auto-rows: auto;
+  grid-template-columns: repeat(4, var(--card-w));
+  gap: var(--gap);
+
+  justify-content: center;
+  align-items: start;
+
+  width: 100%;
+  max-width: none;
+  margin-inline: auto;
+  padding: 0 ;
+}
+
+
+@media (max-width: 1400px) {
+  .listings__grid {
+    grid-template-columns: repeat(3, var(--card-w));
+  }
+}
+
+
+@media (max-width: 1080px) {
+  .listings__grid {
+    grid-template-columns: repeat(2, var(--card-w));
+  }
+}
+
+
+@media (max-width: 740px) {
+  .listings__grid {
+    grid-template-columns: 1fr;
+    gap: 18px; 
+    padding-inline: 16px; 
+  }
+}
+
+/* =========================
+   Listing Card
+   ========================= */
+.listing-card {
+  display: grid;
+  grid-template-rows: auto auto;
+  gap: 14px;
+  width: 340px; 
+  text-decoration: none;
+  color: var(--color-text);
+  transition: transform 0.25s var(--ease-smooth),
+    box-shadow 0.25s var(--ease-smooth);
+  will-change: transform, box-shadow;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-card);
+  }
+
+  &:focus-visible {
+    outline: 2px solid #3a0ca3;
+    outline-offset: 2px;
+    border-radius: 12px;
+  }
+
+  &__media {
+    position: relative;
+    width: 340px;
+    height: 340px;
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    background: #eee;
+
+    img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+      transition: transform 0.45s var(--ease-smooth);
+
+      .listing-card:hover & {
+        transform: scale(1.04);
+      }
+    }
+
+  
+    .listing-card__badge {
+      position: absolute;
+      left: 14px;
+      bottom: 14px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 14px;
+      font-size: 13px;
+      font-weight: 600;
+      color: #fff;
+      background: #3a0ca3; 
+      border-radius: 999px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+      white-space: nowrap;
+
+      svg,
+      img {
+        width: 18px;
+        height: 18px;
+        display: inline-block;
+      }
+    }
+  }
+
+  &__body {
+    display: grid;
+    gap: 8px;
+  }
+
+  &__price {
+    margin: 0;
+    font-weight: 800;
+    font-size: clamp(18px, 2.4vw, 22px);
+  }
+
+  &__title {
+    margin: 0;
+    font-size: clamp(15px, 2.2vw, 18px);
+    font-weight: 600;
+    line-height: 1.35;
+  }
+
+  &__desc {
+    margin: 0;
+    font-size: 14px;
+    color: var(--color-muted);
+    line-height: 1.4;
+  }
+
+  &__meta {
+    margin-top: 10px;
+    padding-top: 12px;
+    border-top: 1px solid var(--color-border);
+    display: flex;
+    align-items: center;
+    gap: 22px;
+
+    .meta__item {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+      color: var(--color-muted);
+
+      .meta__icon {
+        width: 18px;
+        height: 18px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+
+        svg {
+          width: 100%;
+          height: 100%;
+          fill: currentColor;
+        }
+      }
+
+      .meta__text {
+        line-height: 1;
+        white-space: nowrap;
+      }
+    }
+  }
+
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+}
+
+/* =========================
+   Responsive Adjustments (Card)
+   ========================= */
+
+
+@media (max-width: 740px) {
+  .listing-card {
+    width: 100%;
+  }
+  .listing-card__media {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1 / 1;
+    border-radius: 16px;
+  }
+}
+
+
+@media (max-width: 480px) {
+  .listing-card__meta {
+    gap: 16px;
+  }
+  .listing-card .meta__item {
+    font-size: 13px;
+  }
+  .listing-card .meta__icon {
+    width: 14px;
+    height: 14px;
+  }
+}
