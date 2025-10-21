@@ -35,41 +35,41 @@ export default function ListingCard({
 
   return (
     <a
-      className={["listing-card", className].filter(Boolean).join(" ")}
+      className={["listingCard", className].filter(Boolean).join(" ")}
       href={href ?? `#listing-${id}`}
       aria-label={`${title} details`}
     >
-      <div className="listing-card__media">
+      <div className="listingCardMedia">
         <img src={cover} alt={alt ?? title} loading="lazy" />
       </div>
 
-      <div className="listing-card__body">
-        <p className="listing-card__price">
+      <div className="listingCardBody"> 
+        <p className="listingCardPrice">
           <span className="sr-only">Price:</span>${" "}
           {Number(price).toLocaleString()}
         </p>
 
-        <h3 className="listing-card__title" title={title}>
+        <h3 className="listingCardTitle" title={title}>
           {title}
         </h3>
 
-        <p className="listing-card__desc" title={address}>
+        <p className="listingCardDesc" title={address}>
           {address}
         </p>
 
-        <div className="listing-card__meta" aria-label="Property details">
-          <div className="meta__item">
-            <span className="meta__icon" aria-hidden>
+        <div className="listingCardMeta" aria-label="Property details">
+          <div className="metaItem">
+            <span className="metaIcon" aria-hidden>
               {BedsIconNode}
             </span>
-            <span className="meta__text">{beds} Beds</span>
+            <span className="metaText">{beds} Beds</span>
           </div>
 
-          <div className="meta__item">
-            <span className="meta__icon" aria-hidden>
+          <div className="metaItem">
+            <span className="metaIcon" aria-hidden>
               {BathsIconNode}
             </span>
-            <span className="meta__text">{baths} Bath</span>
+            <span className="metaText">{baths} Bath</span>
           </div>
         </div>
       </div>

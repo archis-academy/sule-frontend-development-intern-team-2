@@ -1,27 +1,4 @@
-/* =========================
-   Design Tokens
-   ========================= */
-:root {
-  --radius-xl: 22px;
-  --shadow-card: 0 10px 30px rgba(23, 23, 23, 0.08);
-
-  --color-text: #0f172a;
-  --color-muted: #6b7280;
-  --color-border: #e5e7eb;
-
-  --ease-smooth: cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-/* =========================
-   Full Bleed Utility 
-   ========================= */
-.full-bleed {
-  width: 100vw;
-  margin-left: calc(50% - 50vw);
-  margin-right: calc(50% - 50vw);
-  padding-left: 0 ;
-  padding-right: 0 ;
-}
+@use "@styles/_variables.scss" as *;
 
 /* =========================
    Grid Container 
@@ -37,46 +14,65 @@
 
   justify-content: center;
   align-items: start;
-
   width: 100%;
   max-width: none;
   margin-inline: auto;
-  padding: 0 ;
+  padding: 0;
 }
 
+/* Büyük ekranlarda 4 kart hizalı */
+@media (min-width: 1440px) {
+  .listings__grid {
+    --card-w: 320px;
+    --gap: 40px;
+    grid-template-columns: repeat(4, var(--card-w));
+  }
+}
 
+/* 1200–1439px arası yine 4 kart hizalı */
+@media (min-width: 1200px) and (max-width: 1439.98px) {
+  .listings__grid {
+    --card-w: 280px;
+    --gap: 30px;
+    grid-template-columns: repeat(4, var(--card-w));
+  }
+}
+
+/* 3 → 2 → 1 geçiş */
 @media (max-width: 1400px) {
   .listings__grid {
     grid-template-columns: repeat(3, var(--card-w));
   }
 }
-
-
 @media (max-width: 1080px) {
   .listings__grid {
     grid-template-columns: repeat(2, var(--card-w));
   }
 }
-
-
 @media (max-width: 740px) {
   .listings__grid {
     grid-template-columns: 1fr;
-    gap: 18px; 
-    padding-inline: 16px; 
+    gap: 18px;
+    padding-inline: 16px;
   }
 }
 
 /* =========================
-   Listing Card
+   Listing Card (TSX class isimleriyle)
    ========================= */
-.listing-card {
+.listingCard,
+.listingCard:visited,
+.listingCard:hover,
+.listingCard:active {
+  color: var(--color-text);
+  text-decoration: none;
+}
+
+.listingCard {
   display: grid;
   grid-template-rows: auto auto;
   gap: 14px;
-  width: 340px; 
-  text-decoration: none;
-  color: var(--color-text);
+  width: var(--card-w);
   transition: transform 0.25s var(--ease-smooth),
     box-shadow 0.25s var(--ease-smooth);
   will-change: transform, box-shadow;
@@ -87,141 +83,117 @@
   }
 
   &:focus-visible {
-    outline: 2px solid #3a0ca3;
+    outline: 2px solid var(--color-primary);
     outline-offset: 2px;
     border-radius: 12px;
   }
+}
 
-  &__media {
-    position: relative;
-    width: 340px;
-    height: 340px;
-    border-radius: var(--radius-xl);
-    overflow: hidden;
-    background: #eee;
+.listingCardMedia {
+  position: relative;
+  width: var(--card-w);
+  height: var(--card-w);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  background: var(--color-media-bg);
 
-    img {
-      width: 100%;
-      height: 100%;
-      display: block;
-      object-fit: cover;
-      transition: transform 0.45s var(--ease-smooth);
+  img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    transition: transform 0.45s var(--ease-smooth);
 
-      .listing-card:hover & {
-        transform: scale(1.04);
-      }
-    }
-
-  
-    .listing-card__badge {
-      position: absolute;
-      left: 14px;
-      bottom: 14px;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 8px 14px;
-      font-size: 13px;
-      font-weight: 600;
-      color: #fff;
-      background: #3a0ca3; 
-      border-radius: 999px;
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
-      white-space: nowrap;
-
-      svg,
-      img {
-        width: 18px;
-        height: 18px;
-        display: inline-block;
-      }
+    .listingCard:hover & {
+      transform: scale(1.04);
     }
   }
+}
 
-  &__body {
-    display: grid;
-    gap: 8px;
+.listingCardBody {
+  display: grid;
+  gap: 8px;
+}
+
+.listingCardPrice {
+  margin: 0;
+  font-weight: 800;
+  font-size: clamp(18px, 2.4vw, 22px);
+}
+
+.listingCardTitle {
+  margin: 0;
+  font-size: clamp(15px, 2.2vw, 18px);
+  font-weight: 600;
+  line-height: 1.35;
+  color: var(--color-text);
+}
+
+.listingCardDesc {
+  margin: 0;
+  font-size: 14px;
+  color: var(--color-muted);
+  line-height: 1.4;
+}
+
+.listingCardMeta {
+  margin-top: 10px;
+  padding-top: 12px;
+  border-top: 1px solid var(--color-border);
+  display: flex;
+  align-items: center;
+  gap: var(--meta-gap);
+  flex-wrap: wrap;
+}
+
+.metaItem {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: var(--meta-fs);
+  color: var(--color-muted);
+}
+
+.metaIcon {
+  width: var(--meta-icon);
+  height: var(--meta-icon);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  svg {
+    width: 100%;
+    height: 100%;
+    fill: currentColor;
   }
+}
 
-  &__price {
-    margin: 0;
-    font-weight: 800;
-    font-size: clamp(18px, 2.4vw, 22px);
-  }
+.metaText {
+  line-height: 1;
+  white-space: nowrap;
+}
 
-  &__title {
-    margin: 0;
-    font-size: clamp(15px, 2.2vw, 18px);
-    font-weight: 600;
-    line-height: 1.35;
-  }
-
-  &__desc {
-    margin: 0;
-    font-size: 14px;
-    color: var(--color-muted);
-    line-height: 1.4;
-  }
-
-  &__meta {
-    margin-top: 10px;
-    padding-top: 12px;
-    border-top: 1px solid var(--color-border);
-    display: flex;
-    align-items: center;
-    gap: 22px;
-
-    .meta__item {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 14px;
-      color: var(--color-muted);
-
-      .meta__icon {
-        width: 18px;
-        height: 18px;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-
-        svg {
-          width: 100%;
-          height: 100%;
-          fill: currentColor;
-        }
-      }
-
-      .meta__text {
-        line-height: 1;
-        white-space: nowrap;
-      }
-    }
-  }
-
-  .sr-only {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    white-space: nowrap;
-    border: 0;
-  }
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
 
 /* =========================
    Responsive Adjustments (Card)
    ========================= */
-
-
-@media (max-width: 740px) {
-  .listing-card {
+@media (max-width: $tablet-m) {
+  .listingCard {
     width: 100%;
   }
-  .listing-card__media {
+
+  .listingCardMedia {
     width: 100%;
     height: auto;
     aspect-ratio: 1 / 1;
@@ -229,15 +201,14 @@
   }
 }
 
-
-@media (max-width: 480px) {
-  .listing-card__meta {
+@media (max-width: $mobile-m) {
+  .listingCardMeta {
     gap: 16px;
   }
-  .listing-card .meta__item {
+  .metaItem {
     font-size: 13px;
   }
-  .listing-card .meta__icon {
+  .metaIcon {
     width: 14px;
     height: 14px;
   }

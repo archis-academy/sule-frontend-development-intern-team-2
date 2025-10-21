@@ -38,3 +38,37 @@ $tablet-s: pxToRem(640);
 $mobile-l: pxToRem(576);
 $mobile-m: pxTotRem(480);
 $mobile-s: pxToRem(320);
+
+/* =========================
+   Design Tokens
+   ========================= */
+:root {
+  --radius-xl: 22px;
+  --shadow-card: 0 10px 30px rgba(23, 23, 23, 0.08);
+
+  --color-text: #0f172a;
+  --color-muted: #6b7280;
+  --color-border: #e5e7eb;
+  --color-primary: #3a0ca3;
+  --color-media-bg: #eeeeee; 
+  --ease-smooth: cubic-bezier(0.22, 1, 0.36, 1);
+
+  /* Grid & Card */
+  --card-w: 340px;
+  --grid-gap: 50px;
+  --grid-gap-sm: 18px;
+  --container-x: 16px;
+
+  /* Badge */
+  --badge-gap: 8px;
+  --badge-pad-y: 8px;
+  --badge-pad-x: 14px;
+  --badge-radius: 999px;
+  --badge-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+
+  /* Meta */
+  --meta-gap: 22px;
+  --meta-icon: 18px;
+  --meta-fs: 14px;
+
+}
