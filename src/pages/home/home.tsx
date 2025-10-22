@@ -7,7 +7,6 @@ import CtaBanner from "@components/ctaBanner/ctaBanner";
 import PrimaryHeader from "@/components/PrimaryHeader/PrimaryHeader";
 import Listings from "@/sections/Listings/Listings";
 import Location from "@components/location/location";
-
 function Home() {
   return (
     <>
@@ -30,10 +29,16 @@ function Home() {
       <section id="listings">
         <Listings />
       </section>
-      <OurServices />
-      <Location />
-      <section id="footer">
+      <section id="services">
+        <OurServices />
+      </section>
+      <section id="locations">
+        <Location />
+      </section>
+      <section id="cta-banner">
         <CtaBanner />
+      </section>
+      <section id="footer">
         <Footer />
       </section>
     </>

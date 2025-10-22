@@ -1,5 +1,5 @@
-@use "@styles/_variables.scss" as *;
-
+@import "@/styles/variables";
+/* ---- Design Tokens ---- */
 section {
   scroll-margin-top: var(--header-height);
 }
@@ -245,7 +245,7 @@ body.body-no-scroll {
     color: #fff;
 
     &:hover {
-      background: var(--c-primary-press);
+      background: var( --c-primary-hover);
     }
   }
 
