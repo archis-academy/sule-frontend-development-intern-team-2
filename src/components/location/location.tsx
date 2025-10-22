@@ -27,8 +27,8 @@ const Location: React.FC = () => {
   return (
     <section className={styles.location}>
       <div className={styles.header}>
-        <h6 className={styles.subtitle}>AREAS ACROSS THE TOWN</h6>
-        <h2 className={styles.title}>Neighborhood Properties</h2>
+        <h2 className={styles.subtitle}>AREAS ACROSS THE TOWN</h2>
+        <p className={styles.title}>Neighborhood Properties</p>
       </div>
 
       <div className={styles.gridContainer}>
@@ -38,7 +38,7 @@ const Location: React.FC = () => {
             name={loc.name}
             image={loc.image}
             properties={loc.properties}
-            className={styles[`item-${index + 1}` as keyof typeof styles]}
+            className={styles.item}
           />
         ))}
       </div>
