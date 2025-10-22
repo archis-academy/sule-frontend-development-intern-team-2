@@ -10,7 +10,7 @@ const CtaBanner: React.FC = () => {
   return (
     <section className={styles.banner}>
       <div className={styles.imageWrapper}>
-        <img src={artist} alt="Agent" />
+        <img src={artist} alt="A cheerful real estate agent presenting a new home" />
       </div>
 
       <div className={styles.content}>
