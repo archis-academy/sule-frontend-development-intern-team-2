@@ -3,19 +3,21 @@ import "./Listings.scss";
 import ListingCard from "@/components/ListingCard/ListingCard";
 import { listingsData, type Listing } from "@/data/listingsData";
 import ListingHeader from "@/components/ListingHeader/ListingHeader";
+
 export default function Listings(): JSX.Element {
-  
   const titleId = "listing-header-title";
+
   return (
     <section
       id="listings"
       className="listingsSection"
-      aria-labelledby="listingsTitle"
+      aria-labelledby={titleId}
     >
       <div className="listingsContainer">
         <header className="listingsHeader">
-          <h2 id="listingsTitle" className="listingsTitle">
-             <ListingHeader labelledById={titleId} />
+          {/* h2 sadece referans noktası olarak tanımlı */}
+          <h2 id={titleId} className="sr-only">
+            <ListingHeader labelledById={titleId} />
           </h2>
         </header>
 
