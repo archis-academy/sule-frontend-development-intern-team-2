@@ -3,9 +3,10 @@ import About from "@/sections/About/About";
 import SecondaryHeader from "@components/SecondaryHeader/SecondaryHeader";
 import Partners from "@/components/partnersSection/partners";
 import OurServices from "@/components/ourServices/ourServices";
-import Location from "@components/location/location";
+import CtaBanner from "@components/ctaBanner/ctaBanner";
 import PrimaryHeader from "@/components/PrimaryHeader/PrimaryHeader";
 import Listings from "@/sections/Listings/Listings";
+import Location from "@components/location/location";
 
 
 function Home() {
@@ -32,9 +33,10 @@ function Home() {
         <Listings />
       </section>
       <section id="footer">
-        
+     
       <OurServices />
-      <Location />
+         <Location />
+      <CtaBanner />
       <Footer />
       </section>
     </>
