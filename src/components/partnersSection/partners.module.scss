@@ -1,0 +1,63 @@
+@use "@styles/_variables.scss" as *;
+@use "@styles/_functions.scss" as *;
+.partners {
+  max-width: 1440px;
+  margin: 50px auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: $white;
+  position: relative;
+
+  .bigBlueBlob {
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    top: -40px;
+    left: 50px;
+    background-size: cover;
+    z-index: 5;
+    @media screen and (max-width: 1000px) {
+   display: none;
+    }
+  }
+  h6 {
+    font-family: $secondary-font;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    text-align: center;
+    margin: 0;
+    color: $gray;
+    margin-bottom: 58px;
+  }
+
+  .logos {
+    max-width: 1160px;
+    width: 100%;
+    display: grid;
+    justify-content: space-between;
+    align-items: center;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 1.5rem;
+    justify-items: center;
+    z-index: 2;
+    @media screen and (max-width: 1000px) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+    @media screen and (max-width: 500px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .logo {
+      width: 120px;
+      list-style: none;
+
+      img {
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
+}
