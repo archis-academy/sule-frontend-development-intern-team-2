@@ -13,7 +13,7 @@ const Partners: React.FC = () => {
       image: "amazon.png",
     },
     {
-        id:3,
+      id:3,
       name: "Logitech",
       image: "logitech.png",
     },

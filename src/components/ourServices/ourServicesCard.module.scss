@@ -1,0 +1,60 @@
+@use "@styles/_variables.scss" as *;
+@use "@styles/_functions.scss" as *;
+
+.servicesCard {
+    
+  background: $white;
+  border-radius: 30px;
+  padding: 2.5rem 1.5rem;
+  height: 363px;
+  &:hover {
+    transform: translateY(-5px);
+  }
+
+}
+
+.iconContainer {
+  display: grid;
+  place-items: center;
+  margin: auto;
+  justify-content: center;
+  align-items: center;
+  width: 65px;
+  height: 65px;
+  background-color: $blue;
+  border-radius: 50%;
+  margin-bottom: 1.5rem;
+ 
+  .ourServicesIcon {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+.cardContent {
+  max-width: 220px;
+  margin: auto;
+  text-align: center;
+  @media (max-width: 858px) {
+    max-width: 400px;
+  }
+
+  .cardTitle {
+    font-family: $secondary-font;
+    font-weight: 500;
+    font-size: 19.4px;
+    line-height: 100%;
+    text-align: center;
+    color: $bg-gray;
+    margin-bottom: 20px;
+  }
+
+  .cardDescription {
+    font-family: $secondary-font;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 26px;
+    text-align: center;
+    color: $gray;
+  }
+}

@@ -1,35 +1,69 @@
-/*
-Contributor
-@klassroom-ai klassroom-ai bot 19 minutes ago
-Importing 8 different font families with all their weights via a single @import URL will significantly harm page load performance. Please remove unused fonts and weights to only load what is necessary for the project.
-/*
- * Colors
- *
- * configure the colors required for the project here
- * */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Poppins:wght@400&display=swap");
+
+/* -------------------------
+ * Colors (base palette)
+ * ------------------------- */
 $white: #ffffff;
 $black: #000000;
-$gray:#808080;
-/*
- * Typography and font sizes
- *
- * configure the typography and font sizes required for the project here
- * */
+$gray: #808080;
+$blue: #4361ee; // legacy
+$cart-color: #d4d4d44d;
+$text-dark: #0b090a;
+$bg-gray: #2b2b2b;
 
-// font familly
+/* Semantic colors (single source of truth) */
+$colorText: #0f172a;
+$colorMuted: #6b7280;
+$colorBorder: #e5e7eb;
+
+/* Brand (correct + consistent) */
+$brandPrimary: #3a0ca3; // main brand
+$brandPrimaryRGB: 58, 12, 163; // matches #3A0CA3
+$brandAccent: #4361ee; // optional secondary
+$brandAccentRGB: 67, 97, 238;
+
+/* Optional text on brand */
+$brandPrimaryText: #ffffff;
+
+/* -------------------------
+ * Typography
+ * ------------------------- */
 $primary-font: "Inter", sans-serif;
 $secondary-font: "Poppins", sans-serif;
 
-//font-sizes
 $font-base: pxToRem(16);
-
-//font-weight
 $font-regular: 400;
 
-/*
- * Screen Breakpoints
- * */
+$titleSizeMin: 20;
+$titleSizeMax: 42;
+$subSize: 12;
+$descSize: 16;
 
+/* -------------------------
+ * Layout / Container
+ * ------------------------- */
+$containerMax: 1200; // raw px (use pxToRem($containerMax))
+
+/* -------------------------
+ * Radii & Shadows
+ * ------------------------- */
+$radiusXl: 22; // raw px
+$pillRadius: 999;
+
+$shadowCard: 0 10px 30px rgba(23, 23, 23, 0.08);
+
+/* -------------------------
+ * Spacing scale (raw px)
+ * ------------------------- */
+$gapXs: 8;
+$gapSm: 12;
+$gapMd: 20;
+$gapLg: 24;
+$gapXl: 40;
+
+/* -------------------------
+ * Breakpoints
+ * ------------------------- */
 $desktop-xxl: pxToRem(1920);
 $desktop-xl: pxToRem(1600);
 $desktop-l: pxToRem(1440);
@@ -39,5 +73,50 @@ $tablet-l: pxToRem(992);
 $tablet-m: pxToRem(768);
 $tablet-s: pxToRem(640);
 $mobile-l: pxToRem(576);
-$mobile-m: pxTotRem(480);
+$mobile-m: pxToRem(480); // fixed (was pxTotRem)
 $mobile-s: pxToRem(320);
+
+/* -------------------------
+ * Backward-compatible aliases
+ * (point to canonical vars to avoid duplication)
+ * ------------------------- */
+$textPrimary: $colorText;
+$textMuted: $colorMuted;
+$lineMuted: $colorBorder;
+
+$white: #ffffff;
+$black: #000000;
+$colorText: #0f172a;
+$colorMuted: #6b7280;
+$colorBorder: #e5e7eb;
+$brandPrimary: #3a0ca3;
+$brandPrimaryRGB: 58, 12, 163;
+$brandAccent: #4361ee;
+$brandAccentRGB: 67, 97, 238;
+$shadowCard: 0 18px 40px rgba(2, 6, 23, 0.08);
+
+/* Layout */
+$containerMax: 1920px;
+$radiusXl: 22px;
+$gapXl: 40px;
+
+/* Header height */
+$headerHeight: 80px;
+
+
+:root {
+  --header-height: #{$headerHeight};
+  --container-max: #{$containerMax};
+  --c-bg: #{$white};
+  --c-text: #{$colorText};
+  --c-muted: #{$colorMuted};
+  --c-line: #{$colorBorder};
+  --c-primary: #{$brandPrimary};
+  --c-primary-rgb: #{$brandPrimaryRGB};
+  --c-accent: #{$brandAccent};
+  --c-accent-rgb: #{$brandAccentRGB};
+  --shadow: #{$shadowCard};
+
+  /* Derived tokens */
+  --c-primary-hover-bg: rgba(var(--c-primary-rgb), 0.3);
+}

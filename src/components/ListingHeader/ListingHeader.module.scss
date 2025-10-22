@@ -1,0 +1,106 @@
+/* src/components/ListingHeader/ListingHeader.module.scss */
+@use "@/styles/variables" as vars;
+@use "@/styles/functions" as fn;
+
+/* --- Layout --- */
+.listingHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: fn.pxToRem(vars.$gapXl);
+  max-width: fn.pxToRem(vars.$containerMax);
+  width: 100%;
+  margin-inline: auto;
+  padding-inline: fn.pxToRem(16);
+}
+
+.listingHeaderContent {
+  flex: 1;
+  min-width: 0;
+}
+
+.listingHeaderSub {
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: fn.pxToRem(vars.$subSize);
+  color: vars.$brandPrimary;
+  margin: 0 0 fn.pxToRem(6);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.listingHeaderTitle {
+  font-size: clamp(fn.pxToRem(28), 3.6vw, fn.pxToRem(vars.$titleSizeMax));
+  line-height: 1.15;
+  color: vars.$textPrimary;
+  margin: 0 0 fn.pxToRem(10);
+}
+
+.listingHeaderDesc {
+  color: vars.$textMuted;
+  font-size: fn.pxToRem(16);
+  max-width: 60ch;
+  margin: 0;
+}
+
+.listingHeaderFilters {
+  display: inline-flex;
+  align-items: center;
+  gap: fn.pxToRem(10);
+
+  border: 0;
+  margin: 0;
+  padding: 0;
+  min-inline-size: 0;
+}
+
+.srOnly {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* --- Radio item + visual pill --- */
+.filterItem {
+  display: inline-flex;
+}
+
+.filterBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  height: fn.pxToRem(42);
+  padding: 0 fn.pxToRem(20);
+  border-radius: 999px;
+
+  border: 1px solid vars.$brandPrimary;
+  background: transparent;
+  color: vars.$brandPrimary;
+  font-weight: 600;
+
+  transition: background-color 0.2s ease, border-color 0.2s ease,
+    color 0.2s ease, box-shadow 0.2s ease;
+
+  &:hover {
+    box-shadow: 0 0 0 3px rgba(vars.$brandPrimary, 0.1);
+  }
+}
+
+.isActive {
+  background: vars.$brandPrimary;
+  color: #fff;
+  border-color: vars.$brandPrimary;
+}
+
+.filterItem > .srOnly:focus-visible + .filterBtn {
+  box-shadow: 0 0 0 3px rgba(vars.$brandPrimary, 0.25);
+}
