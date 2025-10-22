@@ -10,7 +10,7 @@ $blue: #4361ee; // legacy
 $cart-color: #d4d4d44d;
 $text-dark: #0b090a;
 $bg-gray: #2b2b2b;
-$white-smoke:#f0f0f0; 
+$white-smoke: #f0f0f0;
 
 /* Semantic colors (single source of truth) */
 $colorText: #0f172a;
@@ -20,8 +20,8 @@ $colorBorder: #e5e7eb;
 /* Brand (correct + consistent) */
 $brandPrimary: #3a0ca3; // main brand
 $brandPrimaryRGB: 58, 12, 163; // matches #3A0CA3
-$brandAccent: #4361ee; // optional secondary
-$brandAccentRGB: 67, 97, 238;
+$brandAccent: #8808f0;
+$brandAccentRGB: 78, 8, 240;
 
 /* Optional text on brand */
 $brandPrimaryText: #ffffff;
@@ -142,4 +142,6 @@ $headerHeight: 80px;
   --meta-gap: 22px;
   --meta-icon: 18px;
   --meta-fs: 14px;
+
+  --c-primary-hover: #4b1fd6;
 }
