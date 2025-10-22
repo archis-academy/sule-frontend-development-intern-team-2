@@ -1,6 +1,5 @@
-// Listings.tsx
 import { type JSX } from "react";
-import "./listings.scss";
+import "./Listings.scss";
 import ListingCard from "@/components/ListingCard/ListingCard";
 import { listingsData, type Listing } from "@/data/listingsData";
 

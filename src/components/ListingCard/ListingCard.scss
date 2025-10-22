@@ -24,12 +24,6 @@
     transform: translateY(-4px);
     box-shadow: var(--shadow-card);
   }
-
-  &:focus-visible {
-    outline: 2px solid var(--color-primary);
-    outline-offset: 2px;
-    border-radius: 12px;
-  }
 }
 
 .listingCardMedia {
@@ -51,6 +45,37 @@
       transform: scale(1.04);
     }
   }
+}
+
+
+.listingCardTags {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  z-index: 2;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.listingCardTag {
+  --tagBg: rgba(2, 6, 23, 0.68);
+  --tagText: #fff;
+  --tagBorder: rgba(255, 255, 255, 0.25);
+
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1;
+  color: var(--tagText);
+  background: var(--tagBg);
+  backdrop-filter: saturate(140%) blur(4px);
+  border: 1px solid var(--tagBorder);
+  white-space: nowrap;
 }
 
 .listingCardBody {
@@ -116,18 +141,6 @@
   white-space: nowrap;
 }
 
-.sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border: 0;
-}
-
 /* =========================
    Responsive Adjustments (Card)
    ========================= */
@@ -148,11 +161,25 @@
   .listingCardMeta {
     gap: 16px;
   }
+
   .metaItem {
     font-size: 13px;
   }
+
   .metaIcon {
     width: 14px;
     height: 14px;
+  }
+
+
+  .listingCardTags {
+    gap: 6px;
+    top: 10px;
+    left: 10px;
+  }
+
+  .listingCardTag {
+    font-size: 11px;
+    padding: 5px 9px;
   }
 }

@@ -14,7 +14,7 @@ export type ListingCardProps = {
     baths: number | string;
     cover: string;
     alt?: string;
-    tags?: string[]; 
+    tags?: string[];
   };
   href?: string;
   bedsIcon?: ReactNode;
@@ -43,13 +43,12 @@ export default function ListingCard({
   return (
     <a
       className={["listingCard", className].filter(Boolean).join(" ")}
-      href={href ?? `/listings/${id}`} 
+      href={href ?? `/listings/${id}`}
       aria-label={`${title} details`}
     >
       <div className="listingCardMedia">
         <img src={cover} alt={alt ?? title} loading="lazy" />
 
-        {/* (3) Optional tags */}
         {Array.isArray(tags) && tags.length > 0 && (
           <ul className="listingCardTags" aria-label="Property tags">
             {tags.map((t, i) => (
@@ -64,7 +63,7 @@ export default function ListingCard({
       <div className="listingCardBody">
         <p className="listingCardPrice">
           <span className="sr-only">Price:</span>$
-          {Number(price).toLocaleString()} 
+          {Number(price).toLocaleString()}
         </p>
 
         <h3 className="listingCardTitle clamp-2" title={title}>

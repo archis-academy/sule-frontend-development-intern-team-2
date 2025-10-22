@@ -27,13 +27,17 @@
       font-size: clamp(28px, 4vw, 40px);
       font-weight: 700;
       color: var(--c-text, #0f172a);
+      line-height: 1.2;
     }
   }
 
   .listingsGrid {
+    --cardW: 340px;
+    --gap: 50px;
+
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-    gap: clamp(24px, 3vw, 50px);
+    grid-template-columns: repeat(auto-fill, minmax(var(--cardW), 1fr));
+    gap: clamp(24px, 3vw, var(--gap));
   }
 
   .listingsCol {
@@ -42,23 +46,17 @@
   }
 }
 
-@media (max-width: 1200px) {
-  .listings__grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+/* Responsive */
+@media (max-width: 810px) {
+  .listingsGrid {
+    --cardW: 260px;
+    gap: 24px;
+    grid-template-columns: repeat(auto-fill, minmax(var(--cardW), 1fr));
   }
 }
 
-@media (max-width: 900px) {
-  .listings__grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
 
-@media (max-width: 600px) {
-  .listings__grid {
-    grid-template-columns: 1fr;
-  }
-}
+
 
 @media (max-width: 480px) {
   .listings {
