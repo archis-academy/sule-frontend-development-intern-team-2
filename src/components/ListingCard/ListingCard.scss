@@ -47,7 +47,9 @@
   }
 }
 
-
+/* =========================
+   Tags (yalnızca gerekli güncelleme)
+   ========================= */
 .listingCardTags {
   position: absolute;
   top: 12px;
@@ -62,8 +64,9 @@
 }
 
 .listingCardTag {
-  --tagBg: rgba(2, 6, 23, 0.68);
-  --tagText: #fff;
+  /* Proje token’larına bağlı, fallback’li */
+  --tagBg: var(--brand-primary, rgba(2, 6, 23, 0.68));
+  --tagText: var(--c-light, #fff);
   --tagBorder: rgba(255, 255, 255, 0.25);
 
   padding: 6px 10px;
@@ -170,7 +173,6 @@
     width: 14px;
     height: 14px;
   }
-
 
   .listingCardTags {
     gap: 6px;
