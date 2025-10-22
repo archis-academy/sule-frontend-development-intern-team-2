@@ -3,12 +3,11 @@ import house2 from "@/assets/icons/house2.svg";
 import house3 from "@/assets/icons/house3.svg";
 import house4 from "@/assets/icons/house4.svg";
 
-
 export interface Listing {
   id: number;
   title: string;
   price: number;
-  address: string; 
+  address: string;
   beds: number;
   baths: number;
   area: string;
@@ -42,7 +41,7 @@ export const listingsData: Listing[] = [
   {
     id: 3,
     title: "Charming Cottage in the Meadow",
-    price:  3450,
+    price: 3450,
     address: "1508 Centennial Farm Road, Harlan, 51537",
     beds: 5,
     baths: 4,
@@ -60,8 +59,7 @@ export const listingsData: Listing[] = [
     area: "1200 sq ft",
     cover: house4,
     alt: "Grand Estate on the Hilltop",
-  }
+  },
 ];
-
 
 export const listings = listingsData;

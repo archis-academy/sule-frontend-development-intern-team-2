@@ -1,64 +1,7 @@
 @use "@styles/_variables.scss" as *;
 
 /* =========================
-   Grid Container 
-   ========================= */
-.listings__grid {
-  --card-w: 340px;
-  --gap: 50px;
-
-  display: grid;
-  grid-auto-rows: auto;
-  grid-template-columns: repeat(4, var(--card-w));
-  gap: var(--gap);
-
-  justify-content: center;
-  align-items: start;
-  width: 100%;
-  max-width: none;
-  margin-inline: auto;
-  padding: 0;
-}
-
-/* Büyük ekranlarda 4 kart hizalı */
-@media (min-width: 1440px) {
-  .listings__grid {
-    --card-w: 320px;
-    --gap: 40px;
-    grid-template-columns: repeat(4, var(--card-w));
-  }
-}
-
-/* 1200–1439px arası yine 4 kart hizalı */
-@media (min-width: 1200px) and (max-width: 1439.98px) {
-  .listings__grid {
-    --card-w: 280px;
-    --gap: 30px;
-    grid-template-columns: repeat(4, var(--card-w));
-  }
-}
-
-/* 3 → 2 → 1 geçiş */
-@media (max-width: 1400px) {
-  .listings__grid {
-    grid-template-columns: repeat(3, var(--card-w));
-  }
-}
-@media (max-width: 1080px) {
-  .listings__grid {
-    grid-template-columns: repeat(2, var(--card-w));
-  }
-}
-@media (max-width: 740px) {
-  .listings__grid {
-    grid-template-columns: 1fr;
-    gap: 18px;
-    padding-inline: 16px;
-  }
-}
-
-/* =========================
-   Listing Card (TSX class isimleriyle)
+   Listing Card 
    ========================= */
 .listingCard,
 .listingCard:visited,
