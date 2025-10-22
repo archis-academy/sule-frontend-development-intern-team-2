@@ -32,9 +32,9 @@ function Home() {
         <Listings />
       </section>
       <section id="footer">
-     
-           <OurServices />
-        <Location />
+        
+      <OurServices />
+      <Location />
       <Footer />
       </section>
     </>
