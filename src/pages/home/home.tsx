@@ -5,10 +5,15 @@ import Partners from "@/components/partnersSection/partners";
 import OurServices from "@/components/ourServices/ourServices";
 
 import PrimaryHeader from "@/components/PrimaryHeader/PrimaryHeader";
+import Listings from "@/sections/Listings/Listings";
+
 
 function Home() {
   return (
     <>
+      {/* Home anchor */}
+      <div id="home" />
+
       <SecondaryHeader
         address={
           <>
@@ -19,11 +24,18 @@ function Home() {
         email="support@rezilla.com"
       />{" "}
       <PrimaryHeader /> 
-        <Partners />
+      <section id="about">
+          <Partners />
       <About />
-   
+      </section>
+      <section id="listings">
+        <Listings />
+      </section>
+      <section id="footer">
+     
       <OurServices />
       <Footer />
+      </section>
     </>
   );
 }
