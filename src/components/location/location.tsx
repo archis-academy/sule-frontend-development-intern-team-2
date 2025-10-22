@@ -10,15 +10,15 @@ interface LocationData {
   properties: number;
   name: string;
   image: string;
+  id: number;
 }
 
 const locations: LocationData[] = [
-  { properties: 216, name: "New York City, NY", image: image1 },
-  { properties: 141, name: "Houston, TX", image: image2 },
-  { properties: 212, name: "San Diego, CA", image: image3 },
-  { properties: 183, name: "Philadelphia, PA", image: image4 },
-  { properties: 112, name: "San Francisco, CA", image: image5 },
-  
+  { properties: 216, name: "New York City, NY", image: image1, id: 1 },
+  { properties: 141, name: "Houston, TX", image: image2, id: 2 },
+  { properties: 212, name: "San Diego, CA", image: image3, id: 3 },
+  { properties: 183, name: "Philadelphia, PA", image: image4, id: 4 },
+  { properties: 112, name: "San Francisco, CA", image: image5, id: 5 }
 ];
 
 const Location: React.FC = () => {
@@ -32,7 +32,7 @@ const Location: React.FC = () => {
       <div className={styles.gridContainer}>
         {locations.map((loc, index) => (
           <LocationCard
-            key={index}
+            key={loc.id}
             name={loc.name}
             image={loc.image}
             properties={loc.properties}
