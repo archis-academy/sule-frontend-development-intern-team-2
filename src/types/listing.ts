@@ -5,4 +5,6 @@ export type ListingHeaderProps = {
   heading?: string;
   description?: string;
   onFilterChange?: (key: FilterKey) => void;
+
+  labelledById?: string;
 };

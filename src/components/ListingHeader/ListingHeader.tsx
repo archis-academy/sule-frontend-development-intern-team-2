@@ -1,4 +1,5 @@
-import { type JSX, memo, useState, useId } from "react";
+import { type JSX, memo, useState } from "react";
+import clsx from "clsx";
 import styles from "./ListingHeader.module.scss";
 import { type FilterKey, type ListingHeaderProps } from "@/types/listing";
 
@@ -14,19 +15,18 @@ function ListingHeaderBase({
   description = "Donec porttitor euismod dignissim. Nullam a lacinia ipsum, nec dignissim purus.",
   onFilterChange,
   labelledById,
-}: ListingHeaderProps & { labelledById?: string }): JSX.Element {
-  const uniqueId = useId();
-  const titleId = labelledById ?? `listing-header-title-${uniqueId}`;
+}: ListingHeaderProps): JSX.Element {
+
+  const titleId = labelledById ?? "listing-header-title";
   const [activeFilter, setActiveFilter] = useState<FilterKey>("all");
 
-  const handleFilterClick = (key: FilterKey): void => {
+  const onChange = (key: FilterKey) => {
     setActiveFilter(key);
-    if (onFilterChange) onFilterChange(key);
+    onFilterChange?.(key);
   };
 
   return (
     <header className={styles.listingHeader} aria-labelledby={titleId}>
-      {/* Left side: text content */}
       <div className={styles.listingHeaderContent}>
         <p className={styles.listingHeaderSub}>{subheading}</p>
         <h2 className={styles.listingHeaderTitle} id={titleId}>
@@ -35,29 +35,38 @@ function ListingHeaderBase({
         <p className={styles.listingHeaderDesc}>{description}</p>
       </div>
 
-      {/* Right side: filter buttons */}
-      <div
+     
+      <fieldset
         className={styles.listingHeaderFilters}
-        role="group"
-        aria-label="Filter listings"
+        role="radiogroup"
+        aria-label="Listing filters"
       >
+        <legend className={styles.srOnly}>Listing filters</legend>
+
         {FILTER_OPTIONS.map(({ key, label }) => {
           const isActive = activeFilter === key;
           return (
-            <button
-              key={key}
-              type="button"
-              className={`${styles.filterBtn} ${
-                isActive ? styles.isActive : ""
-              }`}
-              aria-pressed={isActive}
-              onClick={() => handleFilterClick(key)}
-            >
-              {label}
-            </button>
+            <label key={key} className={styles.filterItem}>
+              <input
+                className={styles.srOnly}
+                type="radio"
+                name="listing-filter"
+                value={key}
+                checked={isActive}
+                onChange={() => onChange(key)}
+              />
+      
+              <span
+                className={clsx(styles.filterBtn, {
+                  [styles.isActive]: isActive,
+                })}
+              >
+                {label}
+              </span>
+            </label>
           );
         })}
-      </div>
+      </fieldset>
     </header>
   );
 }

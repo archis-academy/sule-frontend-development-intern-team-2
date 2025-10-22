@@ -1,22 +1,19 @@
+/* src/components/ListingHeader/ListingHeader.module.scss */
 @use "@/styles/variables" as vars;
 @use "@/styles/functions" as fn;
 
-/* Root wrapper */
+/* --- Layout --- */
 .listingHeader {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: fn.pxToRem(vars.$gapMd);
+  gap: fn.pxToRem(vars.$gapXl);
+  max-width: fn.pxToRem(vars.$containerMax);
   width: 100%;
   margin-inline: auto;
   padding-inline: fn.pxToRem(16);
-
-  &__sub {
-    color: vars.$brandPrimary;
-  }
 }
 
-/* Left text block */
 .listingHeaderContent {
   flex: 1;
   min-width: 0;
@@ -27,7 +24,7 @@
   text-transform: uppercase;
   font-weight: 600;
   font-size: fn.pxToRem(vars.$subSize);
-  color: #4361ee;
+  color: vars.$brandPrimary;
   margin: 0 0 fn.pxToRem(6);
   white-space: nowrap;
   overflow: hidden;
@@ -37,80 +34,73 @@
 .listingHeaderTitle {
   font-size: clamp(fn.pxToRem(28), 3.6vw, fn.pxToRem(vars.$titleSizeMax));
   line-height: 1.15;
-  color: vars.$colorText;
-  margin: 0 0 fn.pxToRem(vars.$gapSm);
+  color: vars.$textPrimary;
+  margin: 0 0 fn.pxToRem(10);
 }
 
 .listingHeaderDesc {
-  font-size: fn.pxToRem(vars.$descSize);
-  color: vars.$colorMuted;
-  margin: 0;
+  color: vars.$textMuted;
+  font-size: fn.pxToRem(16);
   max-width: 60ch;
+  margin: 0;
 }
 
-/* Right: filter group */
 .listingHeaderFilters {
-  display: flex;
-  flex-wrap: wrap;
-  gap: fn.pxToRem(20); 
-  justify-content: flex-end;
+  display: inline-flex;
+  align-items: center;
+  gap: fn.pxToRem(10);
+
+  border: 0;
+  margin: 0;
+  padding: 0;
+  min-inline-size: 0;
 }
 
-/* Buttons */
+.srOnly {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* --- Radio item + visual pill --- */
+.filterItem {
+  display: inline-flex;
+}
+
 .filterBtn {
-  appearance: none;
-  border: 1px solid vars.$brandPrimary;
-  background-color: transparent;
-  color: vars.$colorText;
-  padding: fn.pxToRem(12) fn.pxToRem(20);
-  border-radius: fn.pxToRem(vars.$pillRadius);
-  font-weight: 600;
-  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
-  transition: all 0.25s ease;
-  min-width: fn.pxToRem(80);
-  text-align: center;
-  transition: background-color 0.25s ease, box-shadow 0.25s ease;
+  height: fn.pxToRem(42);
+  padding: 0 fn.pxToRem(20);
+  border-radius: 999px;
+
+  border: 1px solid vars.$brandPrimary;
+  background: transparent;
+  color: vars.$brandPrimary;
+  font-weight: 600;
+
+  transition: background-color 0.2s ease, border-color 0.2s ease,
+    color 0.2s ease, box-shadow 0.2s ease;
 
   &:hover {
-    background-color: rgba(vars.$brandPrimary, 0.08);
-  }
-
-  &:focus-visible {
-    outline: none;
-    box-shadow: 0 0 0 fn.pxToRem(3) rgba(vars.$brandPrimary, 0.25);
+    box-shadow: 0 0 0 3px rgba(vars.$brandPrimary, 0.1);
   }
 }
 
-/* Aktif durum — CSS Modules için ayrı class */
 .isActive {
-  background-color: vars.$brandPrimary;
-  color: vars.$brandPrimaryText;
+  background: vars.$brandPrimary;
+  color: #fff;
   border-color: vars.$brandPrimary;
 }
 
-/* =========================
-   Responsive (variables.scss breakpoints)
-   ========================= */
-@media (max-width: vars.$tablet-m) {
-  .listingHeader {
-    flex-direction: column;
-    align-items: stretch;
-    gap: fn.pxToRem(vars.$gapLg);
-  }
-
-  .listingHeaderFilters {
-    justify-content: flex-start;
-  }
-}
-
-@media (max-width: vars.$mobile-l) {
-  .listingHeaderTitle {
-    font-size: clamp(fn.pxToRem(22), 5vw, fn.pxToRem(28));
-  }
-
-  .filterBtn {
-    padding: fn.pxToRem(10) fn.pxToRem(16);
-    min-width: auto;
-  }
+.filterItem > .srOnly:focus-visible + .filterBtn {
+  box-shadow: 0 0 0 3px rgba(vars.$brandPrimary, 0.25);
 }
