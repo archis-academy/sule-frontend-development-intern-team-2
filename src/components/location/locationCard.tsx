@@ -11,7 +11,7 @@ const LocationCard: React.FC<LocationCardProps> = ({ name, image, properties, cl
     <img src={image} alt={`Properties in ${name}`} className={styles.image} />
 
     <div className={styles.contentOverlay}>
-      <h5 className={styles.properties}>{properties}</h5>
+      <p className={styles.properties}>{properties}</p>
       <p className={styles.name}>{name}</p>
     </div>
   </div>

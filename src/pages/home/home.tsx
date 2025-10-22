@@ -8,13 +8,11 @@ import PrimaryHeader from "@/components/PrimaryHeader/PrimaryHeader";
 import Listings from "@/sections/Listings/Listings";
 import Location from "@components/location/location";
 
-
 function Home() {
   return (
     <>
       {/* Home anchor */}
       <div id="home" />
-
       <SecondaryHeader
         address={
           <>
@@ -24,20 +22,19 @@ function Home() {
         phone="+1 206–214–2298"
         email="support@rezilla.com"
       />{" "}
-      <PrimaryHeader /> 
+      <PrimaryHeader />
       <section id="about">
-          <Partners />
-      <About />
+        <Partners />
+        <About />
       </section>
       <section id="listings">
         <Listings />
       </section>
-      <section id="footer">
-     
       <OurServices />
-         <Location />
-      <CtaBanner />
-      <Footer />
+      <Location />
+      <section id="footer">
+        <CtaBanner />
+        <Footer />
       </section>
     </>
   );

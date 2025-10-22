@@ -14,6 +14,8 @@ interface LocationData {
 }
 
 const locations: LocationData[] = [
+  
+// TODO: In the future, fetch locations dynamically from backend instead of using static data
   { properties: 216, name: "New York City, NY", image: image1, id: 1 },
   { properties: 141, name: "Houston, TX", image: image2, id: 2 },
   { properties: 212, name: "San Diego, CA", image: image3, id: 3 },
