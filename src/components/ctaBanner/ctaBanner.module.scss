@@ -49,8 +49,10 @@
       letter-spacing: 0%;
       color: $white;
       margin-bottom: 30px;
-      @media (max-width: $tablet-m) {
-        margin-bottom: 10px;
+
+      @media (max-width: 768px) {
+        margin-bottom: 0;
+
       }
     }
 
