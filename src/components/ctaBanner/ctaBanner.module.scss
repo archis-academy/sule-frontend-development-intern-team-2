@@ -84,7 +84,7 @@
   transition: background 0.3s ease;
  
   &:hover {
-      background-color: $white-smoke;
+  background:$white-smoke;
   transform: translateY(-1px); 
 
   }
