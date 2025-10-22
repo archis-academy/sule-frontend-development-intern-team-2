@@ -1,0 +1,187 @@
+@use "@styles/_variables.scss" as *;
+
+/* =========================
+   Listing Card 
+   ========================= */
+.listingCard,
+.listingCard:visited,
+.listingCard:hover,
+.listingCard:active {
+  color: var(--color-text);
+  text-decoration: none;
+}
+
+.listingCard {
+  display: grid;
+  grid-template-rows: auto auto;
+  gap: 14px;
+  width: var(--card-w);
+  transition: transform 0.25s var(--ease-smooth),
+    box-shadow 0.25s var(--ease-smooth);
+  will-change: transform, box-shadow;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-card);
+  }
+}
+
+.listingCardMedia {
+  position: relative;
+  width: var(--card-w);
+  height: var(--card-w);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  background: var(--color-media-bg);
+
+  img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    transition: transform 0.45s var(--ease-smooth);
+
+    .listingCard:hover & {
+      transform: scale(1.04);
+    }
+  }
+}
+
+/* =========================
+   Tags (yalnızca gerekli güncelleme)
+   ========================= */
+.listingCardTags {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  z-index: 2;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.listingCardTag {
+  /* Proje token’larına bağlı, fallback’li */
+  --tagBg: var(--brand-primary, rgba(2, 6, 23, 0.68));
+  --tagText: var(--c-light, #fff);
+  --tagBorder: rgba(255, 255, 255, 0.25);
+
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1;
+  color: var(--tagText);
+  background: var(--tagBg);
+  backdrop-filter: saturate(140%) blur(4px);
+  border: 1px solid var(--tagBorder);
+  white-space: nowrap;
+}
+
+.listingCardBody {
+  display: grid;
+  gap: 8px;
+}
+
+.listingCardPrice {
+  margin: 0;
+  font-weight: 800;
+  font-size: clamp(18px, 2.4vw, 22px);
+}
+
+.listingCardTitle {
+  margin: 0;
+  font-size: clamp(15px, 2.2vw, 18px);
+  font-weight: 600;
+  line-height: 1.35;
+  color: var(--color-text);
+}
+
+.listingCardDesc {
+  margin: 0;
+  font-size: 14px;
+  color: var(--color-muted);
+  line-height: 1.4;
+}
+
+.listingCardMeta {
+  margin-top: 10px;
+  padding-top: 12px;
+  border-top: 1px solid var(--color-border);
+  display: flex;
+  align-items: center;
+  gap: var(--meta-gap);
+  flex-wrap: wrap;
+}
+
+.metaItem {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: var(--meta-fs);
+  color: var(--color-muted);
+}
+
+.metaIcon {
+  width: var(--meta-icon);
+  height: var(--meta-icon);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  svg {
+    width: 100%;
+    height: 100%;
+    fill: currentColor;
+  }
+}
+
+.metaText {
+  line-height: 1;
+  white-space: nowrap;
+}
+
+/* =========================
+   Responsive Adjustments (Card)
+   ========================= */
+@media (max-width: $tablet-m) {
+  .listingCard {
+    width: 100%;
+  }
+
+  .listingCardMedia {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1 / 1;
+    border-radius: 16px;
+  }
+}
+
+@media (max-width: $mobile-m) {
+  .listingCardMeta {
+    gap: 16px;
+  }
+
+  .metaItem {
+    font-size: 13px;
+  }
+
+  .metaIcon {
+    width: 14px;
+    height: 14px;
+  }
+
+  .listingCardTags {
+    gap: 6px;
+    top: 10px;
+    left: 10px;
+  }
+
+  .listingCardTag {
+    font-size: 11px;
+    padding: 5px 9px;
+  }
+}

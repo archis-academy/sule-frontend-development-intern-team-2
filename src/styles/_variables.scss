@@ -10,7 +10,7 @@ $blue: #4361ee; // legacy
 $cart-color: #d4d4d44d;
 $text-dark: #0b090a;
 $bg-gray: #2b2b2b;
-$white-smoke:#f0f0f0; 
+$white-smoke: #f0f0f0;
 
 /* Semantic colors (single source of truth) */
 $colorText: #0f172a;
@@ -20,8 +20,8 @@ $colorBorder: #e5e7eb;
 /* Brand (correct + consistent) */
 $brandPrimary: #3a0ca3; // main brand
 $brandPrimaryRGB: 58, 12, 163; // matches #3A0CA3
-$brandAccent: #4361ee; // optional secondary
-$brandAccentRGB: 67, 97, 238;
+$brandAccent: #8808f0;
+$brandAccentRGB: 78, 8, 240;
 
 /* Optional text on brand */
 $brandPrimaryText: #ffffff;
@@ -77,10 +77,6 @@ $mobile-l: pxToRem(576);
 $mobile-m: pxToRem(480); // fixed (was pxTotRem)
 $mobile-s: pxToRem(320);
 
-/* -------------------------
- * Backward-compatible aliases
- * (point to canonical vars to avoid duplication)
- * ------------------------- */
 $textPrimary: $colorText;
 $textMuted: $colorMuted;
 $lineMuted: $colorBorder;
@@ -104,7 +100,6 @@ $gapXl: 40px;
 /* Header height */
 $headerHeight: 80px;
 
-
 :root {
   --header-height: #{$headerHeight};
   --container-max: #{$containerMax};
@@ -120,4 +115,33 @@ $headerHeight: 80px;
 
   /* Derived tokens */
   --c-primary-hover-bg: rgba(var(--c-primary-rgb), 0.3);
+  --radius-xl: 22px;
+  --shadow-card: 0 10px 30px rgba(23, 23, 23, 0.08);
+
+  --color-text: #0f172a;
+  --color-muted: #6b7280;
+  --color-border: #e5e7eb;
+  --color-primary: #3a0ca3;
+  --color-media-bg: #eeeeee;
+  --ease-smooth: cubic-bezier(0.22, 1, 0.36, 1);
+
+  /* Grid & Card */
+  --card-w: 340px;
+  --grid-gap: 50px;
+  --grid-gap-sm: 18px;
+  --container-x: 16px;
+
+  /* Badge */
+  --badge-gap: 8px;
+  --badge-pad-y: 8px;
+  --badge-pad-x: 14px;
+  --badge-radius: 999px;
+  --badge-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+
+  /* Meta */
+  --meta-gap: 22px;
+  --meta-icon: 18px;
+  --meta-fs: 14px;
+
+  --c-primary-hover: #4b1fd6;
 }
