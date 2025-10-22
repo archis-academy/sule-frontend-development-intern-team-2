@@ -1,5 +1,10 @@
-@use "@styles/_functions.scss" as *;
 
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Poppins:wght@400&display=swap");
+
+/*
+Contributor
+@klassroom-ai klassroom-ai bot 19 minutes ago
+Importing 8 different font families with all their weights via a single @import URL will significantly harm page load performance. Please remove unused fonts and weights to only load what is necessary for the project.
 /*
  * Colors
  *
@@ -7,7 +12,11 @@
  * */
 $white: #ffffff;
 $black: #000000;
-
+$gray: #808080;
+$blue: #4361ee;
+$cart-color: #d4d4d44d;
+$text-dark: #0b090a;
+$bg-gray: #2b2b2b;
 /*
  * Typography and font sizes
  *
@@ -16,6 +25,7 @@ $black: #000000;
 
 // font familly
 $primary-font: "Inter", sans-serif;
+$secondary-font: "Poppins", sans-serif;
 
 //font-sizes
 $font-base: pxToRem(16);
