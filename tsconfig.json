@@ -15,6 +15,7 @@
       "@images/*": ["src/assets/images/*"],
       "@icons/*": ["src/assets/icons/*"]
     },
-    "moduleResolution": "bundler"
+    "module": "es2022",
+    "moduleResolution": "node"
   }
 }
