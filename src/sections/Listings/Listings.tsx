@@ -4,11 +4,7 @@ import ListingHeader from "@/components/ListingHeader/ListingHeader";
 
 export default function Listings(): JSX.Element {
   return (
-    <section
-      id="listings"
-      className="listings"
-      aria-labelledby="listings-title"
-    >
+    <section className="listings" aria-labelledby="listing-header-title">
       <ListingHeader />
     </section>
   );

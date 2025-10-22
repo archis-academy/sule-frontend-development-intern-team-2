@@ -1,5 +1,5 @@
-import { type JSX, memo, useState } from "react";
-import styles from "./ListingHeader.module.scss"; 
+import { type JSX, memo, useState, useId } from "react";
+import styles from "./ListingHeader.module.scss";
 import { type FilterKey, type ListingHeaderProps } from "@/types/listing";
 
 const FILTER_OPTIONS: Array<{ key: FilterKey; label: string }> = [
@@ -13,8 +13,11 @@ function ListingHeaderBase({
   heading = "Latest Listed Properties",
   description = "Donec porttitor euismod dignissim. Nullam a lacinia ipsum, nec dignissim purus.",
   onFilterChange,
-}: ListingHeaderProps): JSX.Element {
-  const [activeFilter, setActiveFilter] = useState<FilterKey>("sell");
+  labelledById,
+}: ListingHeaderProps & { labelledById?: string }): JSX.Element {
+  const uniqueId = useId();
+  const titleId = labelledById ?? `listing-header-title-${uniqueId}`;
+  const [activeFilter, setActiveFilter] = useState<FilterKey>("all");
 
   const handleFilterClick = (key: FilterKey): void => {
     setActiveFilter(key);
@@ -22,14 +25,11 @@ function ListingHeaderBase({
   };
 
   return (
-    <header
-      className={styles.listingHeader}
-      aria-labelledby="listing-header-title"
-    >
+    <header className={styles.listingHeader} aria-labelledby={titleId}>
       {/* Left side: text content */}
       <div className={styles.listingHeaderContent}>
         <p className={styles.listingHeaderSub}>{subheading}</p>
-        <h2 className={styles.listingHeaderTitle} id="listing-header-title">
+        <h2 className={styles.listingHeaderTitle} id={titleId}>
           {heading}
         </h2>
         <p className={styles.listingHeaderDesc}>{description}</p>

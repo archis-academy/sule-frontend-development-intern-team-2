@@ -6,11 +6,14 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: fn.pxToRem(vars.$gapXl);
-  max-width: fn.pxToRem(vars.$containerMax);
+  gap: fn.pxToRem(vars.$gapMd);
   width: 100%;
   margin-inline: auto;
   padding-inline: fn.pxToRem(16);
+
+  &__sub {
+    color: vars.$brandPrimary;
+  }
 }
 
 /* Left text block */
@@ -49,7 +52,7 @@
 .listingHeaderFilters {
   display: flex;
   flex-wrap: wrap;
-  gap: fn.pxToRem(20); /* <-- butonlar arası boşluk */
+  gap: fn.pxToRem(20); 
   justify-content: flex-end;
 }
 
@@ -67,6 +70,7 @@
   transition: all 0.25s ease;
   min-width: fn.pxToRem(80);
   text-align: center;
+  transition: background-color 0.25s ease, box-shadow 0.25s ease;
 
   &:hover {
     background-color: rgba(vars.$brandPrimary, 0.08);
