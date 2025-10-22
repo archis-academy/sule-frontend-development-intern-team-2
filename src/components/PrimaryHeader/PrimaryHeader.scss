@@ -185,13 +185,12 @@ body.body-no-scroll {
   text-decoration: none;
   font-weight: 500;
   line-height: 1;
-  position: relative; 
+  position: relative;
 
   &:hover {
     background: var(--c-primary-hover-bg);
   }
 }
-
 
 .nav-link.is-active,
 .nav-link[aria-current="page"] {

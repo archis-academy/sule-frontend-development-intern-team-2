@@ -2,8 +2,10 @@ import { type JSX } from "react";
 import "./Listings.scss";
 import ListingCard from "@/components/ListingCard/ListingCard";
 import { listingsData, type Listing } from "@/data/listingsData";
-
+import ListingHeader from "@/components/ListingHeader/ListingHeader";
 export default function Listings(): JSX.Element {
+  
+  const titleId = "listing-header-title";
   return (
     <section
       id="listings"
@@ -13,7 +15,7 @@ export default function Listings(): JSX.Element {
       <div className="listingsContainer">
         <header className="listingsHeader">
           <h2 id="listingsTitle" className="listingsTitle">
-            Listings
+             <ListingHeader labelledById={titleId} />
           </h2>
         </header>
 

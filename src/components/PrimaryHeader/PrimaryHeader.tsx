@@ -36,9 +36,7 @@ function useEventListener(
   }, [type, target, options]);
 }
 
-/* ===============================
-   Yardımcı: sayfa içi kaydırma
-   =============================== */
+
 function scrollToHash(hash: string) {
   if (!hash.startsWith("#")) return;
   const id = hash.slice(1);
@@ -172,7 +170,7 @@ export default function PrimaryHeader(): JSX.Element {
               );
             })}
 
-            {/* Mobile: user actions hamburger içinde */}
+         
             <li className="nav-actions">
               <NavLink to="/login" className="header-actions__link">
                 <UserIcon aria-hidden="true" />

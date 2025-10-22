@@ -20,8 +20,8 @@
   }
 
   .listingsHeader {
-    text-align: center;
     margin-bottom: clamp(24px, 4vw, 48px);
+   
 
     .listingsTitle {
       font-size: clamp(28px, 4vw, 40px);
@@ -53,16 +53,18 @@
     gap: 24px;
     grid-template-columns: repeat(auto-fill, minmax(var(--cardW), 1fr));
   }
+  .listingsHeader{
+    flex-direction: column;
+    align-items: center;
+    
+  }
 }
-
-
-
 
 @media (max-width: 480px) {
   .listings {
     --gap: 20px;
   }
-  .listings__title {
+  .listingsTitle {
     font-size: clamp(22px, 6vw, 28px);
   }
 }
