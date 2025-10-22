@@ -1,20 +1,4 @@
 /* ---- Design Tokens ---- */
-:root {
-  --header-height: 80px;
-  --container-max: 1920px;
-
-  --c-bg: #ffffff;
-  --c-text: #0f172a;
-  --c-primary: #3a0ca3;
-  --c-primary-press: #3d18cc;
-  --c-line: #e2e8f0;
-
-  --shadow: 0 18px 40px rgba(2, 6, 23, 0.08);
-
-  --c-primary-rgb: 58, 12, 163;
-  --c-primary-hover-bg: rgba(var(--c-primary-rgb), 0.3);
-  --header-height: 80px;
-}
 section {
   scroll-margin-top: var(--header-height);
 }
