@@ -14,11 +14,9 @@ export default function Listings(): JSX.Element {
       aria-labelledby={titleId}
     >
       <div className="listingsContainer">
+      
         <header className="listingsHeader">
-          {/* h2 sadece referans noktası olarak tanımlı */}
-          <h2 id={titleId} className="sr-only">
-            <ListingHeader labelledById={titleId} />
-          </h2>
+          <ListingHeader labelledById={titleId} />
         </header>
 
         <div className="listingsGrid" role="list">
