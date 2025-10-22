@@ -25,7 +25,7 @@ const Location: React.FC = () => {
   return (
     <section className={styles.location}>
       <div className={styles.header}>
-        <p className={styles.subtitle}>AREAS ACROSS THE TOWN</p>
+        <h6 className={styles.subtitle}>AREAS ACROSS THE TOWN</h6>
         <h2 className={styles.title}>Neighborhood Properties</h2>
       </div>
 
