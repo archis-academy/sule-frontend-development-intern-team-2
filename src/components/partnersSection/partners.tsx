@@ -36,7 +36,7 @@ const Partners: React.FC = () => {
   return (
     <section className={styles.partners}>
       <div className={styles.bigBlueBlob}>
-        <img src="Ellipse.png" alt={"Ellipse"} />
+        <img src="Ellipse.png" alt="Ellipse" />
       </div>
       <h6>Trusted by 100+ Companies across the globe! </h6>
       <ul className={styles.logos}>
