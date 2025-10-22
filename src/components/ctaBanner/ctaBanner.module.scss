@@ -6,7 +6,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: #2e00b8;
+  background-color: $blue;
   border-radius: 20px;
   padding: 0 4rem;
   color: $white;
@@ -41,7 +41,7 @@
     @media (max-width: $tablet-m) {
       margin-top: 0;
     }
-    h2 {
+    .title {
       font-family: $secondary-font;
       font-weight: 600;
       font-size: clamp(24px, 5vw, 40px);
@@ -54,7 +54,7 @@
       }
     }
 
-    p {
+    .description {
       font-family: $secondary-font;
       font-weight: 400;
       font-size: 16px;
