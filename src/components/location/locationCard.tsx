@@ -8,7 +8,7 @@ interface LocationCardProps {
 
 const LocationCard: React.FC<LocationCardProps> = ({ name, image, properties, className }) => (
   <div className={`${styles.locationCard} ${className}`}>
-    <img src={image} alt={`Properties in ${name}`} className={styles.image} />
+    <img src={image} alt={name} className={styles.image} />
 
     <div className={styles.contentOverlay}>
       <h2 className={styles.properties}>{properties}</h2>

@@ -32,7 +32,7 @@ const Location: React.FC = () => {
       </div>
 
       <div className={styles.gridContainer}>
-        {locations.map((loc, index) => (
+        {locations.map((loc) => (
           <LocationCard
             key={loc.id}
             name={loc.name}
