@@ -1,0 +1,95 @@
+@use "@styles/_variables.scss" as *;
+@use "@styles/_functions.scss" as *;
+
+.teamSection {
+  max-width: 1296px;
+  padding: 80px 20px;
+  text-align: center;
+  margin: 0 auto;
+    @media screen and (max-width: $desktop-s) {
+      padding: 40px 20px;
+    }
+  .header {
+    margin-bottom: 100px;
+    @media screen and (max-width: $mobile-l) {
+      margin-bottom: 50px;
+    }
+
+    .intro {
+      color: $primary;
+      font-family: $secondary-font;
+      font-weight: 500;
+      font-size: 20px;
+      line-height: 100%;
+      letter-spacing: 1.5;
+      text-align: center;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+
+    .title {
+      font-family: $secondary-font;
+      font-weight: 600;
+      font-size: clamp(25px, 5vw, 40px);
+      line-height: 47px;
+      letter-spacing: 0;
+      text-align: center;
+      color: $text-primary;
+    }
+  }
+
+  .teamGrid {
+    max-width: 1296px;
+    margin: 0 auto;
+    display: grid;
+    gap: 20px;
+    grid-template-columns: repeat(4, 1fr);
+    justify-items: center;
+    @media screen and (max-width: $desktop-s) {
+      max-width: 600px;
+      grid-template-columns: repeat(2, 1fr);
+    }
+    @media screen and (max-width: $mobile-l) {
+     
+      grid-template-columns: repeat(1, 1fr);
+      }
+  }
+
+  .card {
+    border-radius: 12px;
+    transition: all 0.3s ease;
+
+    img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      border-radius: 10px;
+      margin-bottom: 15px;
+    }
+
+    .name {
+      font-family: $secondary-font;
+      font-weight: 500;
+      font-size: 16px;
+      line-height: 1;
+      letter-spacing: 0;
+      text-align: center;
+      color: $text-primary;
+      margin-bottom: 20px;
+    }
+
+    .title {
+      font-family: $secondary-font;
+      font-weight: 500;
+      font-size: 16px;
+      line-height: 1;
+      letter-spacing: 0;
+      text-align: center;
+      color:$blue;
+    }
+
+    &:hover {
+      transform: translateY(-6px);
+    }
+  }
+}
