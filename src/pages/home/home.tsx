@@ -8,6 +8,8 @@ import PrimaryHeader from "@/components/PrimaryHeader/PrimaryHeader";
 import Listings from "@/sections/Listings/Listings";
 import Location from "@components/location/location";
 import TeamMembers from "@/components/teamMember/teamMembers";
+import TrendingSection from "@/components/TrendingSection/TrendingSection";
+
 function Home() {
   return (
     <>
@@ -21,7 +23,7 @@ function Home() {
         }
         phone="+1 206–214–2298"
         email="support@rezilla.com"
-      />{" "}
+      />
       <PrimaryHeader />
       <section id="about">
         <Partners />
@@ -33,6 +35,12 @@ function Home() {
       <section id="services">
         <OurServices />
       </section>
+
+      {/* TrendingSection'ı ekliyoruz */}
+      <section id="trending-section">
+        <TrendingSection />
+      </section>
+
       <section id="locations">
         <Location />
       </section>
@@ -48,4 +56,5 @@ function Home() {
     </>
   );
 }
+
 export default Home;

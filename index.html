@@ -9,10 +9,10 @@
 
     <title>Rezilla - Real Estate Platform</title>
     <!-- font poppins -->
-         <link
-  href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Poppins:wght@400;600&display=swap"
-  rel="stylesheet"
-/>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Poppins:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
 
     <!--  Favicon (SVG) -->
     <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml" />
@@ -29,7 +29,6 @@
       property="og:image"
       content="https://rezilla-project.netlify.app/og-image.png"
     />
-    
 
     <!--  Optional SEO Tags -->
     <meta
@@ -41,8 +40,10 @@
 
   <body>
     <div id="root"></div>
-
-    <!--  JS Entry  -->
+    <div id="root"></div>
+    <!-- React bileşeni burada yüklenecek -->
+    <script src="bundle.js"></script>
+    <!-- React derlenmiş dosyası -->
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
